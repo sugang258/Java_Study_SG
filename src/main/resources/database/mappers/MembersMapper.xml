@@ -6,17 +6,17 @@
          <mapper namespace="com.gang.start.members.BankMembersDAO">
          
          	<!-- 로그인 -->
-         	<select id="getLogin" parameterType="com.gang.start.members.BankMembersDTO" resultType="com.gang.start.members.BankMembersDTO">
+         	<select id="getLogin" parameterType="BankMembersDTO" resultType="BankMembersDTO">
          		SELECT USERNAME, PASSWORD FROM BANKMEMBERS WHERE USERNAME = #{userName} AND PASSWORD = #{password}
          	</select>
          	
          	<!-- id찾기 -->
-         	<select id="getSearchByID" parameterType="java.lang.String" resultType="com.gang.start.members.BankMembersDTO">
+         	<select id="getSearchByID" parameterType="String" resultType="BankMembersDTO">
          		SELECT * FROM BANKMEMBERS WHERE USERNAME LIKE '%'||#{search}||'%' ORDER BY USERNAME DESC
          	</select>
          	
          	<!-- 회원가입 -->
-         	<insert id="setJoin" parameterType="com.gang.start.members.BankMembersDTO">
+         	<insert id="setJoin" parameterType="BankMembersDTO">
          		INSERT INTO BANKMEMBERS VALUES(#{userName},#{password},#{name},#{Email},#{phone})
          	</insert>
          

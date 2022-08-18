@@ -25,7 +25,7 @@ public class BankBookController {
 		System.out.println(" list 실행 ");
 		
 
-		List<BankBookDTO> ar = bankBookService.getlist();
+		List<BankBookDTO> ar = bankBookService.getList();
 	
 		model.addAttribute("list",ar);
 

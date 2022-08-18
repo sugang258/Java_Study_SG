@@ -26,9 +26,9 @@ public int setUpdate(BankBookDTO bankBookDTO) throws Exception{
 	}
 		
 	
-	public List<BankBookDTO> getlist()throws Exception{
+	public List<BankBookDTO> getList()throws Exception{
 		
-		return bankBookDAO.getlist();
+		return bankBookDAO.getList();
 				
 				
 		

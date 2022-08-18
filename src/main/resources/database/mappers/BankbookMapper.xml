@@ -6,32 +6,32 @@
 
 		  <mapper namespace="com.gang.start.bankbook.BankBookDAO">
          	
-         	<insert id="setBankBook" parameterType="com.gang.start.bankbook.BankBookDTO">
+         	<insert id="setBankBook" parameterType="BankBookDTO">
          		INSERT INTO BANKBOOK VALUES (#{bookNum},#{bookName},#{bookRate},#{bookSale})
          	</insert>
          	
          	
-         	<select id="getList" resultType="com.gang.start.bankbook.BankBookDTO">
+         	<select id="getList" resultType="BankBookDTO">
          		SELECT * FROM BANKBOOK ORDER BY BOOKNUM DESC
          	</select>
          	
          	
-         	<update id="setChangeSale" parameterType="com.gang.start.bankbook.BankBookDTO" >
+         	<update id="setChangeSale" parameterType="BankBookDTO" >
          		UPDATE BANKBOOK SET BOOKSALE = #{bookSale} WHERE BOOKNUM = #{bookNum}
          	</update>
          	
          	
-         	<select id="getDetail" parameterType="com.gang.start.bankbook.BankBookDTO" resultType="com.gang.start.bankbook.BankBookDTO">
+         	<select id="getDetail" parameterType="BankBookDTO" resultType="BankBookDTO">
          		SELECT * FROM BANKBOOK WHERE BOOKNUM = #{bookNum}
          	</select>
          	
          	
-         	<update id="setUpdate" parameterType="com.gang.start.bankbook.BankBookDTO">
+         	<update id="setUpdate" parameterType="BankBookDTO">
          		UPDATE BANKBOOK SET BOOKNAME = #{bookName}, BOOKRATE = #{bookRate} WHERE BOOKNUM = #{bookNum}
          	</update>
          	
          	
-         	<delete id="setDelete" parameterType="com.gang.start.bankbook.BankBookDTO">
+         	<delete id="setDelete" parameterType="BankBookDTO">
          		DELETE FROM BANKBOOK WHERE BOOKNUM = #{bookNum}
          	</delete>
         

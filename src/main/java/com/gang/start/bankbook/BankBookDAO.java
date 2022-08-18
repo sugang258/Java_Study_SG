@@ -30,7 +30,7 @@ public class BankBookDAO {
 	
 	
 	
-	public List<BankBookDTO> getlist() throws Exception {
+	public List<BankBookDTO> getList() throws Exception {
 		
 			
 		return sqlSession.selectList(NAMESPACE+"getlist"); 
