@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.gang.start.members.BankMembersDTO;
+
 
 @Controller
 @RequestMapping(value= "/bankaccount/*")
@@ -20,9 +22,9 @@ public class BankAccountController {
 			
 			System.out.println(" account add 실행");
 			
-			BankMembersDTO bankMembersDTO =  (bankMembersDTO) session.getAttribute("member");
+			BankMembersDTO bankMembersDTO = (BankMembersDTO) session.getAttribute("member");
 			
-			BankAccountDTO.setUserName(bankMembersDTO.getUserName());
+			bankAccountDTO.setUserName(bankMembersDTO.getUserName());
 			int result = this.bankAccountService.add(bankAccountDTO);
 			
 			return "redirect../bankbook/list.gang";
