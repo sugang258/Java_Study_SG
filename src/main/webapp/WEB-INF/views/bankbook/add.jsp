@@ -6,26 +6,32 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<style>
-    .align-center {text-align: center;}
-</style>
 <body>
-	<form action="add.gang" class=".align-center" method="post">
-	<h1>Product Page</h1>
-	 	
-        bookname
-        <input type="text" name="bookname" placeholder="bookname"><br><br>
-        bookrate
-        <input type="text" name="bookrate" placeholder="bookrate"><br><br>
-       
-        <input type="submit" value="상품등록" >
-        <!-- <button type="submit">Add</button> -->
-      
+
+<h1> add page </h1>
+		<form action = "./add.gang" method ="post">
+		<div>
+		계좌명 입력 <input type = " text " name = "BookName" >
+			<br><br>
+			 <input type="reset" value ="다시 입력">
 	
-	
-	
-	
-	</form>
+		</div>
+		    <div>
+		    <br><br>
+		     이자율 입력 <input type="text" name ="BookRate">
+		      <input type="reset" value ="다시 입력">
+		    </div>
+		    
+		    <div>
+		    <br><br><br>
+		    <input type="submit" value="추가 등록">
+		    <button type="submit">add</button>
+		
+		</div>
+		
+		
+		</form>
+
 
 </body>
 </html>

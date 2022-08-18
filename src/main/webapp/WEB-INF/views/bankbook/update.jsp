@@ -1,30 +1,34 @@
-<%@page import="com.gang.start.bankbook.BankBookDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%BankBookDTO bankBookDTO = new BankBookDTO(); %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<style>
-    .align-center {text-align: center;}
-</style>
 <body>
-	<form action="update.gang" class="align-center" method="post" >
-		<div>
-		<h1>Update Page</h1>
-		</div>
-		BookNum<input type="text" name="booknum" readonly="readonly" value="${dto.booknum}" >
-		<div>
-		BookName<input type="text" name="bookname" value = "${dto.bookname}">
-		</div>
-		<div>
-		BookRate<input type="text" name="bookrate" value = "${dto.bookrate}">
-		</div>
-		<input type ="submit" value="Update">
+ 
+
+<H1> BANKBOOK update page</H1>
+
+<form action ="update.gang" method = "post" >
+<input type ="hidden" name ="bookNum"  readonly value ="${dto.bookNum}}"> 
+
+<div>
+ 	Name <input type =" text" name= "bookName" value ="${dto.bookName} }">
+</div>
+
+<div>
+	 Rate <input type =" text " name="bookRate" value ="${dto.bookRate} }">
+</div>
+
+    
+   <button type="submit">update</button>
+	<a href="../"><input type="button" value="메인으로 이동"></a>
+	
 	
 </form>
+
 </body>
 </html>
