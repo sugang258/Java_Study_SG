@@ -28,7 +28,7 @@
     <label for="exampleInputPassword1" class="form-label">Password</label>
     </div>
     <div>
-    <input type="password" class="col-lg-2" name="password">
+    <input type="text" class="col-lg-2" name="password">
   </div>
   
   <button type="submit" class="btn btn-primary mt-4">Submit</button>
