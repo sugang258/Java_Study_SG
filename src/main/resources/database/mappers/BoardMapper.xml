@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		    
+		    <mapper namespace="com.gang.start.board.BoardDAO">
+		    	<select id="getList" resultType="com.gang.start.board.BoardDTO" >
+		    			SELECT * FROM BOARD
+		    	</select>
+		    	
+		    	<select id="getDetail" parameterType="com.gang.start.board.BoardDTO" resultType="com.gang.start.board.BoardDTO">
+		    			SELECT * FROM BOARD WHERE NUM = #{num}
+		    	</select>
+		    	
+		    	<insert id="add" parameterType="com.gang.start.board.BoardDTO">
+		    			INSERT INTO BOARD VALUES(BOARD_SEQ.NEXTVAL, #{title}, #{contexts}, #{userName}, SYSDATE,?)
+		    	</insert>
+		    	
+		    	<update id="update" parameterType="com.gang.start.board.BoardDTO">
+		    			UPDATE BOARD SET TITLE = #{title}, CONTEXTS = #{contexts} WHERE NUM = #{num}
+		    	</update>
+		    	
+		    	<delete id="delete" parameterType="com.gang.start.board.BoardDTO">
+		    	 		DELETE FROM BOARD WHERE NUM = #{num}
+		    	</delete>
+		    	
+		    
+		    
+		    </mapper>

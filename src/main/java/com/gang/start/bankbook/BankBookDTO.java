@@ -2,35 +2,40 @@ package com.gang.start.bankbook;
 
 public class BankBookDTO {
 	
-	private long bookNum;
-	private String bookName;
-	private Double bookRate;
-	private Integer bookSale;
+	private long booknum;
+	private String bookname;
+	private double bookrate;
+	private boolean booksale;
+	
+	public long getBooknum() {
+		return booknum;
+	}
+	public void setBooknum(long booknum) {
+		this.booknum = booknum;
+	}
+	public String getBookname() {
+		return bookname;
+	}
+	public void setBookname(String bookname) {
+		this.bookname = bookname;
+	}
+	public double getBookrate() {
+		return bookrate;
+	}
+	public void setBookrate(double bookrate) {
+		this.bookrate = bookrate;
+	}
+	public boolean getBooksale() {
+		return booksale;
+	}
+	public void setBooksale(boolean booksale) {
+		this.booksale = booksale;
+	}
+	public boolean isBookSale() {
+		// TODO Auto-generated method stub
+		return this.booksale;
+	}
 	
 	
-	public long getBookNum() {
-		return bookNum;
-	}
-	public void setBookNum(long bookNum) {
-		this.bookNum = bookNum;
-	}
-	public String getBookName() {
-		return bookName;
-	}
-	public void setBookName(String bookName) {
-		this.bookName = bookName;
-	}
-	public Double getBookRate() {
-		return bookRate;
-	}
-	public void setBookRate(Double bookRate) {
-		this.bookRate = bookRate;
-	}
-	public Integer getBookSale() {
-		return bookSale;
-	}
-	public void setBookSale(Integer bookSale) {
-		this.bookSale = bookSale;
-	}
 
 }

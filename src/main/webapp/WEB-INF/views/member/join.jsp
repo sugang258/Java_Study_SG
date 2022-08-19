@@ -1,35 +1,60 @@
-<%@page import="com.gang.start.members.BankMembersDTO"%>
-<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%ArrayList<BankMembersDTO> ar = (ArrayList<BankMembersDTO>) request.getAttribute("join"); %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+
 </head>
 <style>
     .align-center {text-align: center;}
 </style>
 <body>
-	<form action="join.gang" class="align-center" method="post">
-	<h1>join page</h1><br>
+	<c:import url="../template/header.jsp"></c:import>
 	
-        ID
-        <input type="text" name="userName" placeholder="id를 입력하세요"><br><br>
-        PW
-        <input type="text" name="password" placeholder="pw를 입력하세요"><br><br>
-        이름
-        <input type="text" name="name" placeholder="이름을 입력하세요"><br><br>
-        Email
-        <input type="text" name="Email" placeholder="Email을 입력하세요"><br><br>
-        Phone
-        <input type="text" name="phone" placeholder="Phone을 입력하세요"><br><br>
-        <input type="submit" value="회원가입" onclick="location.href='login'">
-        <input type="button" value="뒤로가기" onclick="location.href='login'">
-        
-    </form>
+	<form action="join.gang" class="align-center" method="post">
+  <div class="mb-3 mt-4">
+    <label for="exampleInputEmail1" class="form-label">ID</label>
+    </div>
+    <div>
+    <input type="text" class="col-lg-2" name="userName">
+    <div id="emailHelp" class="form-text">We'll never share your ID with anyone else.</div>
+  </div>
+  <div class="mb-3 mt-4">
+    <label for="exampleInputEmail1" class="form-label">Password</label>
+    </div>
+    <div>
+    <input type="password" class="col-lg-2" name="password">
+  </div>
+  <div class="mb-3 mt-4">
+    <label for="exampleInputEmail1" class="form-label">Name</label>
+    </div>
+    <div>
+    <input type="text" class="col-lg-2" name="name">
+  </div>
+  <div class="mb-3 mt-4">
+    <label for="exampleInputEmail1" class="form-label">Email</label>
+    </div>
+    <div>
+    <input type="email" class="col-lg-2" name="Email">
+  </div>
+  <div class="mb-3 mt-4">
+    <label for="exampleInputPassword1" class="form-label">Phone</label>
+    </div>
+    <div>
+    <input type="text" class="col-lg-2" name="phone">
+  </div>
+  
+  <button type="submit" class="btn btn-primary mt-4" onclick="location.href='login'">Submit</button>
+  <button class="btn btn-primary mt-4" onclick="location.href='login'">뒤로가기</button>
+</form>
+
+    	<c:import url="../template/footer.jsp"></c:import>
+    
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 
 </body>
 </html>

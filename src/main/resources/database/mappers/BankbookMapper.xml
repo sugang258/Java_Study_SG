@@ -7,7 +7,7 @@
 		  <mapper namespace="com.gang.start.bankbook.BankBookDAO">
          	
          	<insert id="setBankBook" parameterType="com.gang.start.bankbook.BankBookDTO">
-         		INSERT INTO BANKBOOK VALUES (#{bookNum},#{bookName},#{bookRate},#{bookSale})
+         		INSERT INTO BANKBOOK VALUES (#{booknum},#{bookname},#{bookrate},#{booksale})
          	</insert>
          	
          	
@@ -17,22 +17,22 @@
          	
          	
          	<update id="setChangeSale" parameterType="com.gang.start.bankbook.BankBookDTO" >
-         		UPDATE BANKBOOK SET BOOKSALE = #{bookSale} WHERE BOOKNUM = #{bookNum}
+         		UPDATE BANKBOOK SET BOOKSALE = #{booksale} WHERE BOOKNUM = #{booknum}
          	</update>
          	
          	
          	<select id="getDetail" parameterType="com.gang.start.bankbook.BankBookDTO" resultType="com.gang.start.bankbook.BankBookDTO">
-         		SELECT * FROM BANKBOOK WHERE BOOKNUM = #{bookNum}
+         		SELECT * FROM BANKBOOK WHERE BOOKNUM = #{booknum}
          	</select>
          	
          	
          	<update id="setUpdate" parameterType="com.gang.start.bankbook.BankBookDTO">
-         		UPDATE BANKBOOK SET BOOKNAME = #{bookName}, BOOKRATE = #{bookRate} WHERE BOOKNUM = #{bookNum}
+         		UPDATE BANKBOOK SET BOOKNAME = #{bookname}, BOOKRATE = #{bookrate} WHERE BOOKNUM = #{booknum}
          	</update>
          	
          	
          	<delete id="setDelete" parameterType="com.gang.start.bankbook.BankBookDTO">
-         		DELETE FROM BANKBOOK WHERE BOOKNUM = #{bookNum}
+         		DELETE FROM BANKBOOK WHERE BOOKNUM = #{booknum}
          	</delete>
         
          </mapper>
