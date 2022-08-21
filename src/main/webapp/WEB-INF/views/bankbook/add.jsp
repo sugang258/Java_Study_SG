@@ -17,19 +17,19 @@
 	<c:import url="../template/header.jsp"></c:import>
 	<h1 class="align-center"> add page </h1>
 	
-	<form action ="./add.gang" class="align-center" method="post">
+	<form action ="add.gang" class="align-center" method="post">
 	
 		  <div class="mb-3 mt-4">
-		    <label for="exampleInputEmail1" class="form-label">계좌명 입력</label>
+		    <label class="form-label">계좌명 입력</label>
 		    </div>
 		    <div>
-		    <input type="text" class="col-lg-2" name="BookName">
+		    <input type="text" class="col-lg-2" name="bookname">
 		  </div>
 		  <div class="mb-3 mt-4">
-		    <label for="exampleInputEmail1" class="form-label">이자율 입력</label>
+		    <label class="form-label">이자율 입력</label>
 		    </div>
 		    <div>
-		    <input type="password" class="col-lg-2" name="BookRate" >
+		    <input type="text" class="col-lg-2" name="bookrate" >
 		  </div>
 		  
 		  <button type="submit" class="btn btn-primary mt-4" >Submit</button>

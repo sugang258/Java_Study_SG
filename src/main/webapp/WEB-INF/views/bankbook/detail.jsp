@@ -13,6 +13,7 @@
     .align-center {text-align: center;}
 </style>
 <body>
+<c:import url="../template/header.jsp"></c:import>
 
 <h1 class="align-center">!!!detail page!!!</h1>
 
@@ -48,11 +49,12 @@
 <a href = "/member/join.gang" >join</a> 
 
 <a href = "./list.gang" >리스트 보기</a> 
-<a href ="./update.gang?bookNum=${dto.booknum}"> 수정 </a>
-<a href ="./delete.gang?bookNum=${dto.booknum}"> 삭제 </a>
+<a href ="./update.gang?booknum=${dto.booknum}"> 수정 </a>
+<a href ="./delete.gang?booknum=${dto.booknum}"> 삭제 </a>
+
   <c:if test="${not empty sessionScope.member}">
 
-<a href ="../account/add.gang?bookNum=${dto.booknum}"> 상품 가입하기 </a> 
+<a href ="../account/add.gang?booknum=${dto.booknum}"> 상품 가입하기 </a> 
 
 
 </c:if>

@@ -5,7 +5,7 @@
 		    
 		    <mapper namespace="com.gang.start.board.BoardDAO">
 		    	<select id="getList" resultType="com.gang.start.board.BoardDTO" >
-		    			SELECT * FROM BOARD
+		    			SELECT * FROM BOARD ORDER BY NUM DESC
 		    	</select>
 		    	
 		    	<select id="getDetail" parameterType="com.gang.start.board.BoardDTO" resultType="com.gang.start.board.BoardDTO">
@@ -13,7 +13,7 @@
 		    	</select>
 		    	
 		    	<insert id="add" parameterType="com.gang.start.board.BoardDTO">
-		    			INSERT INTO BOARD VALUES(BOARD_SEQ.NEXTVAL, #{title}, #{contexts}, #{userName}, SYSDATE,?)
+		    			INSERT INTO BOARD VALUES(BOARD_SEQ.NEXTVAL, #{title}, #{contexts}, #{userName}, SYSDATE,#{views})
 		    	</insert>
 		    	
 		    	<update id="update" parameterType="com.gang.start.board.BoardDTO">
@@ -23,6 +23,12 @@
 		    	<delete id="delete" parameterType="com.gang.start.board.BoardDTO">
 		    	 		DELETE FROM BOARD WHERE NUM = #{num}
 		    	</delete>
+		    	
+		    	
+		    	<update id="updateViews" parameterType="int">
+		    		UPDATE BOARD SET VIEWS = VIEWS+1 WHERE NUM = #{num}
+		    	</update>
+		    	 
 		    	
 		    
 		    

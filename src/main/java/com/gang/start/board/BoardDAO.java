@@ -45,6 +45,12 @@ public class BoardDAO {
 		
 		return sqlSession.delete(NAMESPACE+"delete", boardDTO);
 	}
+
+	public int updateViews (int num) throws Exception {
+		
+		return sqlSession.update(NAMESPACE+"updateViews", num);
+	}
+	
 	
 	
 	

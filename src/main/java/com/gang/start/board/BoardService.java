@@ -17,12 +17,13 @@ public class BoardService {
 	private BoardDAO boardDAO;
 	
 	public List<BoardDTO> getList() throws Exception {
-		
+		//boardDAO.updateViews();
 		return boardDAO.getList();
 		
 	}
 	
 	public BoardDTO getDetail(BoardDTO boardDTO) throws Exception {
+		boardDAO.updateViews(boardDTO.getNum());
 		return boardDAO.getDetail(boardDTO);
 	}
 	
@@ -42,5 +43,11 @@ public class BoardService {
 		
 		return boardDAO.add(boardDTO);
 	}
+	
+	
+	public int updateViews(int num) throws Exception {
+		return boardDAO.updateViews(num);
+	}
+	
 
 }

@@ -3,6 +3,8 @@ package com.gang.start.board;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -89,10 +91,12 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "add.gang", method=RequestMethod.POST)
-	public ModelAndView add(BoardDTO boardDTO, BankMembersDTO bankMembersDTO) throws Exception {
+	public ModelAndView add(HttpSession session, BoardDTO boardDTO) throws Exception {
 		
 		ModelAndView mv = new ModelAndView();
 		System.out.println("글 작성 실행 post");
+		//session.getAttribute("member");
+		BankMembersDTO bankMembersDTO = (BankMembersDTO) session.getAttribute("member");
 		
 		boardDTO.setUserName(bankMembersDTO.getUserName());
 		boardDTO.setViews(0);
