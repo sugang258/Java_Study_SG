@@ -38,7 +38,7 @@ public class BankMembersDAO implements MembersDAO {
 	}
 	
 	public BankMembersDTO myPage(BankMembersDTO bankMembersDTO) throws Exception {
-		System.out.println(bankMembersDTO.getUserName());
+		
 		return sqlSession.selectOne(NAMESPACE+"myPage", bankMembersDTO);
 		
 	}

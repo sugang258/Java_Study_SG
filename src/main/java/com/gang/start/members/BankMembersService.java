@@ -54,7 +54,7 @@ public class BankMembersService {
 		*/
 		
 		public BankMembersDTO myPage(BankMembersDTO bankMembersDTO) throws Exception {
-			System.out.println("33333");
+	
 			return bankMembersDAO.myPage(bankMembersDTO);
 		}
 }
