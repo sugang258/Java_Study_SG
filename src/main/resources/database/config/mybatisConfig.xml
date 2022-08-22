@@ -3,4 +3,15 @@
 				  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 				  "http://mybatis.org/dtd/mybatis-3-config.dtd"> 
 				  
-<configuration></configuration>
+<configuration>
+ 
+	<typeAliases>
+		<typeAlias type="com.gang.start.members.BankMembersDTO" alias="BankMembersDTO"/>
+		<typeAlias type="com.gang.start.bankbook.BankBookDTO" alias="BankBookDTO"/>
+		<typeAlias type="com.gang.start.account.BankAccountDTO" alias="BankAccountDTO" />
+		<typeAlias type="com.gang.start.board.BoardDTO" alias="BoardDTO"/>
+		<typeAlias type="java.util.List" alias="List"/>
+	</typeAliases>
+	 
+
+</configuration>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		 
+		  <mapper namespace="com.gang.start.account.BankAccountDAO">
+         	<insert id="add" parameterType="com.gang.start.account.BankAccountDTO">
+         		INSERT INTO BANKACCOUNT VALUES (ACCOUNT_SEQ.NEXTVAL,#{userName},#{bookNum},SYSDATE)
+         	</insert>
+         	
+         
+         	
+         	
+         	
+         	<!-- 
+         	
+         	<resultMap type="BankAccountDTO" id="getListByUserNameResult">
+         		<id column="ACCOUNTNUM" property="accountNum"></id>
+         		<result column="ACCOUNTDATE" property="accountDate"></result>
+         		
+         		<association property="bankBookDTO" javaType="BankBookDTO">
+         			<result column="BOOKNAME" property="bookname"></result>
+         		
+         		</association>
+         		
+         	</resultMap>
+          -->
+         
+         </mapper>

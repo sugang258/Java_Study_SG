@@ -20,7 +20,7 @@
                     <c:choose>
                     	<c:when test="${not empty member}">
 		                    <a class="nav-link active" href="/member/myPage.gang">마이페이지</a>
-		                    <a class="nav-link active" href="/member/Logout.gang">로그아웃</a>
+		                    <a class="nav-link active" href="/member/logout.gang">로그아웃</a>
                     	</c:when>
                     	<c:otherwise>
 		                    <a class="nav-link active" href="/member/login.gang">로그인</a>

@@ -1,7 +1,9 @@
+
 package com.gang.start.members;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -13,8 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.gang.start.members.BankMembersDAO;
-import com.gang.start.members.BankMembersDTO;
+import com.gang.start.account.BankAccountDTO;
+import com.gang.start.account.BankAccountService;
+
 
 
 @Controller 
@@ -28,6 +31,11 @@ public class MemberController {
 	
 	@Autowired
 	private BankMembersService bankMembersService;
+	/*
+	@Autowired
+	private BankAccountService bankAccountService;
+	
+	*/
 	
 	// /member/login
 	@RequestMapping(value = "login.gang", method= RequestMethod.GET)
@@ -120,5 +128,30 @@ public class MemberController {
 		
 		return "redirect:../";
 		
+	}
+	
+	@RequestMapping(value="myPage.gang", method=RequestMethod.GET)
+	public String myPage(BankMembersDTO bankMembersDTO, HttpSession session, Model model) throws Exception{
+		System.out.println("MyPage GET");
+		bankMembersDTO = (BankMembersDTO) session.getAttribute("member");
+		//bankMembersDTO.setUserName(bankMembersDTO.getUserName());
+		//Map<String, Object> map = bankMembersService.myPage(bankMembersDTO);
+		
+		//model.addAttribute("map",map);
+		
+		bankMembersDTO = bankMembersService.myPage(bankMembersDTO);
+		//List<BankAccountDTO> ar = bankAccountService.getListByUserName(bankMembersDTO);
+		//model.addAttribute("list", ar);
+		model.addAttribute("dto",bankMembersDTO);
+		/*
+		bankMembersDTO = (BankMembersDTO) session.getAttribute("member");
+		//BankAccountDTO bankAccountDTO = (BankAccountDTO) session.getAttribute("account");
+		bankAccountDTO.setUserName(bankMembersDTO.getUserName());
+		List<BankAccountDTO> ar = bankAccountService.getListByUserName(bankMembersDTO);
+		model.addAttribute("ad", ar);
+		//model.addAttribute("ad",bankAccountDTO);
+		return "member/myPage";
+		*/
+		return "member/myPage";
 	}
 }

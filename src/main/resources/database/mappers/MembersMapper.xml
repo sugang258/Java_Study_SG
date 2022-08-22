@@ -6,19 +6,44 @@
          <mapper namespace="com.gang.start.members.BankMembersDAO">
          
          	<!-- 로그인 -->
-         	<select id="getLogin" parameterType="com.gang.start.members.BankMembersDTO" resultType="com.gang.start.members.BankMembersDTO">
+         	<select id="getLogin" parameterType="BankMembersDTO" resultType="BankMembersDTO">
          		SELECT USERNAME, PASSWORD FROM BANKMEMBERS WHERE USERNAME = #{userName} AND PASSWORD = #{password}
          	</select>
          	
          	<!-- id찾기 -->
-         	<select id="getSearchByID" parameterType="java.lang.String" resultType="com.gang.start.members.BankMembersDTO">
+         	<select id="getSearchByID" parameterType="java.lang.String" resultType="BankMembersDTO">
          		SELECT * FROM BANKMEMBERS WHERE USERNAME LIKE '%'||#{search}||'%' ORDER BY USERNAME DESC
          	</select>
          	
          	<!-- 회원가입 -->
-         	<insert id="setJoin" parameterType="com.gang.start.members.BankMembersDTO">
+         	<insert id="setJoin" parameterType="BankMembersDTO">
          		INSERT INTO BANKMEMBERS VALUES(#{userName},#{password},#{name},#{Email},#{phone})
          	</insert>
+         	
+         	<select id="myPage" parameterType="BankMembersDTO" resultMap="getMyPageResult">
+         		SELECT USERNAME, NAME, EMAIL, PHONE, ACCOUNTNUM, BOOKNAME, ACCOUNTDATE 
+				FROM BANKACCOUNT BA 
+				INNER JOIN BANKBOOK BB
+				USING (BOOKNUM) 
+				INNER JOIN BANKMEMBERS BM
+				USING (USERNAME)
+				WHERE USERNAME = #{userName}
+         	</select>
+         	
+         	<resultMap type="BankMembersDTO" id="getMyPageResult">
+         		<id column="USERNAME" property="userName"></id>
+         		<result column="NAME" property="name"></result>
+         		<result column="EMAIL" property="email"></result>
+         		<result column="PHONE" property="phone"></result>
+         		<collection property="bankAccountDTOs" javaType="List" ofType ="BankAccountDTO">
+         			<id column="ACCOUNTNUM" property="accountNum"></id>
+         			<result column="ACCOUNTDATE" property="accountDate"></result>
+         			<association property="bankBookDTO" javaType="BankBookDTO">
+         				<result column="BOOKNAME" property="bookname"></result>
+         			</association>
+         		</collection>
+         		
+         	</resultMap>
          
          
          </mapper>

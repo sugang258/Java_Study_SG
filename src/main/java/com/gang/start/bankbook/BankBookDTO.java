@@ -1,12 +1,24 @@
 package com.gang.start.bankbook;
 
+import java.util.List;
+
+import com.gang.start.account.BankAccountDTO;
+
 public class BankBookDTO {
 	
 	private long booknum;
 	private String bookname;
 	private double bookrate;
 	private boolean booksale;
+	private List<BankAccountDTO> bankAccountDTOs;
 	
+
+	public List<BankAccountDTO> getBankAccountDTOs() {
+		return bankAccountDTOs;
+	}
+	public void setBankAccountDTOs(List<BankAccountDTO> bankAccountDTOs) {
+		this.bankAccountDTOs = bankAccountDTOs;
+	}
 	public long getBooknum() {
 		return booknum;
 	}
