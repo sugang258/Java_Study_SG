@@ -27,9 +27,10 @@ public class BankAccountController {
 			BankMembersDTO bankMembersDTO = (BankMembersDTO) session.getAttribute("member");
 			
 			bankAccountDTO.setUserName(bankMembersDTO.getUserName());
+			
 			int result = this.bankAccountService.add(bankAccountDTO);
 			
-			return "redirect../bankbook/list.gang";
+			return "redirect:../bankbook/list.gang";
 		}
 		
 		/*

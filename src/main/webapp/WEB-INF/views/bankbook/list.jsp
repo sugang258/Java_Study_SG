@@ -41,10 +41,10 @@
 				<c:forEach items="${list}" var="dto">
 				
 				<tr>
-					<td> <a href="./detail.gang?booknum=${dto.booknum}">
-					${dto.bookname}</a> </td>
+					<td> <a href="./detail.gang?bookNum=${dto.bookNum}">
+					${dto.bookName}</a> </td>
 					
-					<td> ${dto.bookrate} </td>
+					<td> ${dto.bookRate} </td>
 				</tr>
 			</c:forEach>	
 				

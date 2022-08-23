@@ -6,10 +6,10 @@ import com.gang.start.account.BankAccountDTO;
 
 public class BankBookDTO {
 	
-	private long booknum;
-	private String bookname;
-	private double bookrate;
-	private boolean booksale;
+	private long bookNum;
+	private String bookName;
+	private double bookRate;
+	private boolean bookSale;
 	private List<BankAccountDTO> bankAccountDTOs;
 	
 
@@ -19,34 +19,31 @@ public class BankBookDTO {
 	public void setBankAccountDTOs(List<BankAccountDTO> bankAccountDTOs) {
 		this.bankAccountDTOs = bankAccountDTOs;
 	}
-	public long getBooknum() {
-		return booknum;
+	public long getBookNum() {
+		return bookNum;
 	}
-	public void setBooknum(long booknum) {
-		this.booknum = booknum;
+	public void setBookNum(long bookNum) {
+		this.bookNum = bookNum;
 	}
-	public String getBookname() {
-		return bookname;
+	public String getBookName() {
+		return bookName;
 	}
-	public void setBookname(String bookname) {
-		this.bookname = bookname;
+	public void setBookName(String bookName) {
+		this.bookName = bookName;
 	}
-	public double getBookrate() {
-		return bookrate;
+	public double getBookRate() {
+		return bookRate;
 	}
-	public void setBookrate(double bookrate) {
-		this.bookrate = bookrate;
-	}
-	public boolean getBooksale() {
-		return booksale;
-	}
-	public void setBooksale(boolean booksale) {
-		this.booksale = booksale;
+	public void setBookRate(double bookRate) {
+		this.bookRate = bookRate;
 	}
 	public boolean isBookSale() {
-		// TODO Auto-generated method stub
-		return this.booksale;
+		return bookSale;
 	}
+	public void setBookSale(boolean bookSale) {
+		this.bookSale = bookSale;
+	}
+	
 	
 	
 

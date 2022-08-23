@@ -8,10 +8,10 @@ public void view(ArrayList<BankBookDTO> ar) {
 		
 		for(BankBookDTO bankBookDTO : ar) {
 			
-			Long num = bankBookDTO.getBooknum();
-			String name = bankBookDTO.getBookname();
-			double rate = bankBookDTO.getBookrate();
-			boolean sale = bankBookDTO.getBooksale();
+			Long num = bankBookDTO.getBookNum();
+			String name = bankBookDTO.getBookName();
+			double rate = bankBookDTO.getBookRate();
+			boolean sale = bankBookDTO.isBookSale();
 			
 			System.out.println(num);
 			System.out.println(name);
@@ -23,10 +23,10 @@ public void view(ArrayList<BankBookDTO> ar) {
 		
 		public void view(BankBookDTO bankBookDTO) {
 			
-			Long num = bankBookDTO.getBooknum();
-			String name = bankBookDTO.getBookname();
-			double rate = bankBookDTO.getBookrate();
-			boolean sale = bankBookDTO.getBooksale();
+			Long num = bankBookDTO.getBookNum();
+			String name = bankBookDTO.getBookName();
+			double rate = bankBookDTO.getBookRate();
+			boolean sale = bankBookDTO.isBookSale();
 			
 			System.out.println(num);
 			System.out.println(name);

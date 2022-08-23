@@ -23,19 +23,19 @@
     <label class="form-label">BookNum</label>
     </div>
     <div>
-    <input type ="text" name ="booknum"  readonly value ="${dto.booknum}"> 
+    <input type ="text" name ="bookNum"  readonly value ="${dto.bookNum}"> 
     </div>
   <div class="mb-3 mt-4">
     <label  class="form-label">BookName</label>
     </div>
     <div>
-    <input type="text" class="col-lg-2" name="bookname" value="${dto.bookname}">
+    <input type="text" class="col-lg-2" name="bookName" value="${dto.bookName}">
   </div>
   <div class="mb-3 mt-4">
     <label  class="form-label">BookRate</label>
     </div>
     <div>
-    <input type="text" class="col-lg-2" name="bookrate" value="${dto.bookrate }">
+    <input type="text" class="col-lg-2" name="bookRate" value="${dto.bookRate }">
   </div>
   
   <button type="submit" class="btn btn-primary mt-4">Update</button>

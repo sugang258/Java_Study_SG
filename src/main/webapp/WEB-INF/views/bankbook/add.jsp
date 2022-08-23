@@ -23,13 +23,13 @@
 		    <label class="form-label">계좌명 입력</label>
 		    </div>
 		    <div>
-		    <input type="text" class="col-lg-2" name="bookname">
+		    <input type="text" class="col-lg-2" name="bookName">
 		  </div>
 		  <div class="mb-3 mt-4">
 		    <label class="form-label">이자율 입력</label>
 		    </div>
 		    <div>
-		    <input type="text" class="col-lg-2" name="bookrate" >
+		    <input type="text" class="col-lg-2" name="bookRate" >
 		  </div>
 		  
 		  <button type="submit" class="btn btn-primary mt-4" >Submit</button>

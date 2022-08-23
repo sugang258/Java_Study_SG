@@ -83,8 +83,8 @@ public class BankBookController {
 		Calendar ca = Calendar.getInstance();
 		long num = ca.getTimeInMillis();
 		
-		bankBookDTO.setBooknum(num);
-		bankBookDTO.setBooksale(true);
+		bankBookDTO.setBookNum(num);
+		bankBookDTO.setBookSale(true);
 
 		bankBookService.setBankBook(bankBookDTO);
 		//System.out.println(result);
@@ -99,7 +99,7 @@ public class BankBookController {
 	public void update(BankBookDTO bankBookDTO, Model model) throws Exception{
 		System.out.println("업데이트 실행");
 		
-		System.out.println(bankBookDTO.getBooknum());
+		System.out.println(bankBookDTO.getBookNum());
 		bankBookDTO= bankBookService.getDetail(bankBookDTO);
 		
 		model.addAttribute("dto",bankBookDTO);
@@ -115,7 +115,7 @@ public class BankBookController {
 		
 		System.out.println(result);
 		
-		mv.setViewName("redirect:./detail.gang?booknum="+bankBookDTO.getBooknum());
+		mv.setViewName("redirect:./detail.gang?booknum="+bankBookDTO.getBookNum());
 		//mv.setViewName("redirect:./list");
 		return mv;
 	

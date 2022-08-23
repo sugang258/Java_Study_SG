@@ -39,7 +39,7 @@
          			<id column="ACCOUNTNUM" property="accountNum"></id>
          			<result column="ACCOUNTDATE" property="accountDate"></result>
          			<association property="bankBookDTO" javaType="BankBookDTO">
-         				<result column="BOOKNAME" property="bookname"></result>
+         				<result column="BOOKNAME" property="bookName"></result>
          			</association>
          		</collection>
          		

@@ -107,7 +107,7 @@
          
             <tr>
                <td>${dto1.accountNum}</td>
-               <td>${dto1.bankBookDTO.bookname}</td>
+               <td>${dto1.bankBookDTO.bookName}</td>
                <td>${dto1.accountDate}</td>
             </tr>
        
