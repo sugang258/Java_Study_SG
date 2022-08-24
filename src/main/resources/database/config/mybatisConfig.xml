@@ -9,7 +9,8 @@
 		<typeAlias type="com.gang.start.members.BankMembersDTO" alias="BankMembersDTO"/>
 		<typeAlias type="com.gang.start.bankbook.BankBookDTO" alias="BankBookDTO"/>
 		<typeAlias type="com.gang.start.account.BankAccountDTO" alias="BankAccountDTO" />
-		<typeAlias type="com.gang.start.board.BoardDTO" alias="BoardDTO"/>
+		<typeAlias type="com.gang.start.board.impl.BoardDTO" alias="BoardDTO"/>
+		<typeAlias type="com.gang.start.board.qna.QnaDTO" alias="QnaDTO" />
 		<typeAlias type="java.util.List" alias="List"/>
 	</typeAliases>
 	 
