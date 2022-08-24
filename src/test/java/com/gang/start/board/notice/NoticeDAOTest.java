@@ -15,7 +15,8 @@ public class NoticeDAOTest extends MyAbstractTest  {
 	@Autowired
 	private NoticeDAO noticeDAO;
 
-	@Test
+	
+	//@Test
 	public void getListTest() throws Exception{
 		
 		
@@ -25,7 +26,7 @@ public class NoticeDAOTest extends MyAbstractTest  {
 		
 	}
 	
-	@Test
+	//@Test
 	public void getDetailTest() throws Exception {
 		BoardDTO boardDTO = new BoardDTO();
 		boardDTO.setNum(10L);
@@ -35,24 +36,25 @@ public class NoticeDAOTest extends MyAbstractTest  {
 		assertNotNull(boardDTO);
 	}
 	
-	@Test
+	//@Test
 	public void setAddTest() throws Exception {
-		BoardDTO boardDTO = new BoardDTO();
 		
-		boardDTO.setNum(1L);
-		boardDTO.setTitle("tt");
-		boardDTO.setContents("cc");
-		boardDTO.setWriter("ID1");
-		boardDTO.setRegDate(null);
-		boardDTO.setHit(0L);
-		
-		int result = noticeDAO.setAdd(boardDTO);
-		
-		assertEquals(1, result);
-		
+		for(int i=0;i<100;i++) {
+			NoticeDTO noticeDTO = new NoticeDTO();
+			noticeDTO.setTitle("TITLE"+i);
+			noticeDTO.setContents("contents" + i);
+			noticeDTO.setWriter("writer" +i);
+			
+			
+			int result = noticeDAO.setAdd(noticeDTO);
+			   if(i%10 ==0) { 
+		            Thread.sleep(500);
+		                
+		       }
+		}
 	}
 	
-	@Test
+	//@Test
 	public void setUpdate() throws Exception {
 		BoardDTO boardDTO = new BoardDTO();
 		
@@ -66,7 +68,7 @@ public class NoticeDAOTest extends MyAbstractTest  {
 		assertEquals(1, result);
 	}
 	
-	@Test
+	//@Test
 	public void setDelete() throws Exception {
 		BoardDTO boardDTO = new BoardDTO();
 		
@@ -76,5 +78,13 @@ public class NoticeDAOTest extends MyAbstractTest  {
 		
 		assertEquals(1, result);
 	}
-
+	
+	
+	@Test
+	public void getCount() throws Exception {
+		long result = noticeDAO.getCount();
+		assertEquals(113L,result);
+		System.out.println(result);
+		
+	}
 }

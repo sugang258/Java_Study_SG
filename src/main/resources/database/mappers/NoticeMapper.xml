@@ -3,25 +3,32 @@
 		    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 			<mapper namespace="com.gang.start.board.notice.NoticeDAO">
-				<select id ="getList" resultType="BoardDTO">
-					SELECT * FROM NOTICE ORDER BY NUM DESC
+				<select id ="getList" resultType="NoticeDTO" parameterType="java.util.Map">
+					SELECT * FROM
+					(SELECT ROWNUM R ,N.* FROM
+					(SELECT * FROM NOTICE ORDER BY NUM DESC) N)
+					WHERE R BETWEEN #{startRow} AND #{lastRow}
 				</select>
 				
-				<select id="getDetail" parameterType="BoardDTO" resultType="BoardDTO">
+				<select id="getDetail" parameterType="NoticeDTO" resultType="NoticeDTO">
 					SELECT * FROM NOTICE WHERE NUM = #{num}
 				</select>
 				
-				<insert id="setAdd" parameterType="BoardDTO">
+				<insert id="setAdd" parameterType="NoticeDTO">
 					INSERT INTO NOTICE VALUES (BOARD_SEQ.NEXTVAL,#{title},#{writer},#{contents},SYSDATE,0)
 				</insert>
 				
-				<update id="setUpdate" parameterType="BoardDTO">
+				<update id="setUpdate" parameterType="NoticeDTO">
 					UPDATE NOTICE SET TITLE = #{title}, CONTENTS = #{contents} WHERE NUM = #{num}
 				</update>
 				
-				<delete id="setDelete" parameterType="BoardDTO">
+				<delete id="setDelete" parameterType="NoticeDTO">
 					DELETE FROM NOTICE WHERE NUM = #{num}
 				</delete>
+				
+				<select id="getCount" resultType="java.lang.Long">
+					SELECT COUNT(NUM) FROM NOTICE
+				</select>
 			
 			
 			</mapper>

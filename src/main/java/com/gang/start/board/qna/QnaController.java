@@ -2,15 +2,19 @@ package com.gang.start.board.qna;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.gang.start.board.impl.BoardDTO;
 import com.gang.start.board.notice.NoticeService;
+import com.gang.start.members.BankMembersDTO;
 
 @RequestMapping(value="/qna/*")
 @Controller
@@ -19,13 +23,21 @@ public class QnaController {
 	@Autowired
 	private QnaService qnaService;
 	
+	@ModelAttribute("board")
+	public String getBoard() {
+		return "Qna";
+	}
+	
 	@RequestMapping(value="list.gang", method=RequestMethod.GET)
-	public String getList(Model model) throws Exception {
+	public ModelAndView getList() throws Exception {
 		
+		ModelAndView mv = new ModelAndView();
 		List<QnaDTO> ar = qnaService.getList();
-		model.addAttribute("list", ar);
+		mv.addObject("list", ar);
+		mv.setViewName("board/list");
 		
-		return "notice/list";
+		
+		return mv;
 		
 	}
 	
@@ -35,7 +47,7 @@ public class QnaController {
 		ModelAndView mv = new ModelAndView();
 		qnaDTO = qnaService.getDetail(qnaDTO);
 		
-		mv.setViewName("qna/detail");
+		mv.setViewName("board/detail");
 		mv.addObject("dto",qnaDTO);
 		
 		return mv;
@@ -44,14 +56,16 @@ public class QnaController {
 	
 	@RequestMapping(value="add.gang", method=RequestMethod.GET)
 	public String setAdd() throws Exception {
-		return "qna/add";
+		return "board/add";
 	}
 	
 	
 	@RequestMapping(value="add.gang", method=RequestMethod.POST)
-	public ModelAndView setAdd(QnaDTO qnaDTO) throws Exception {
+	public ModelAndView setAdd(QnaDTO qnaDTO, BankMembersDTO bankMembersDTO, HttpSession session) throws Exception {
 		
+		bankMembersDTO = (BankMembersDTO) session.getAttribute("member");
 		ModelAndView mv = new ModelAndView();
+		qnaDTO.setWriter(bankMembersDTO.getUserName());
 		int result = qnaService.setAdd(qnaDTO);
 		
 		mv.setViewName("redirect:./list.gang");
