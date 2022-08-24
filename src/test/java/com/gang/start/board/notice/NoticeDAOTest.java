@@ -36,9 +36,9 @@ public class NoticeDAOTest extends MyAbstractTest  {
 		assertNotNull(boardDTO);
 	}
 	
-	//@Test
+	@Test
 	public void setAddTest() throws Exception {
-		
+		/*
 		for(int i=0;i<100;i++) {
 			NoticeDTO noticeDTO = new NoticeDTO();
 			noticeDTO.setTitle("TITLE"+i);
@@ -52,6 +52,12 @@ public class NoticeDAOTest extends MyAbstractTest  {
 		                
 		       }
 		}
+		/*
+		 */
+		NoticeDTO noticeDTO = new NoticeDTO();
+		noticeDTO.setTitle("TITLE");
+		noticeDTO.setContents("contents");
+		noticeDTO.setWriter("writer");
 	}
 	
 	//@Test

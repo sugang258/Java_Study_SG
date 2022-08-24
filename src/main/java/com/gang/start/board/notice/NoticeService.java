@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.gang.start.board.impl.BoardDTO;
 import com.gang.start.board.impl.BoardService;
+import com.gang.start.util.Pager;
 
 @Service
 public class NoticeService implements BoardService {
@@ -18,14 +19,14 @@ public class NoticeService implements BoardService {
 	
 	//글목록
 	@Override
-	public List<BoardDTO> getList(Long page) throws Exception{
-		System.out.println(page);
-		
+	public List<BoardDTO> getList(Pager pager) throws Exception{
+		System.out.println(pager.getPage());
+		/*
 		Long startRow = 0L;
 		Long lastRow =0L;
-		Long perPage =15L; //한페이지에 출력할 목록의 갯수
+		Long perPage =10L; //한페이지에 출력할 목록의 갯수
 		
-		startRow = (page-1)*perPage;
+		startRow = (page-1)*perPage+1;
 		lastRow = page*perPage;
 		
 		System.out.println("StartRow" + startRow);
@@ -35,7 +36,44 @@ public class NoticeService implements BoardService {
 		map.put("startRow", startRow);
 		map.put("lastRow", lastRow);
 		
-		return noticeDAO.getList(map);
+		Long totalCount = noticeDAO.getCount();
+		System.out.println(totalCount);
+		Long totalPage = totalCount/perPage;
+		
+		
+		
+		if(totalCount % perPage != 0) {
+			totalPage++;
+		}
+		
+		System.out.println( "page count : " + totalPage);
+		
+		Long perBlock=5L;
+		Long totalBlock = totalPage/perBlock;
+		
+		if(totalPage % perBlock != 0) {
+			totalBlock++;
+		}
+		
+		Long curBlock = (totalPage /perBlock);
+		
+		if(curBlock % perBlock  != 0) {
+			curBlock++;
+		}
+		
+		Long startNum =(curBlock-1) * perBlock + 1; 
+		
+		Long lastNum = curBlock*perBlock;
+		
+		System.out.println(curBlock);
+		*/
+		
+		
+		pager.getRowNum();
+	     Long totalCount = noticeDAO.getCount();
+	      pager.getNum(totalCount);
+		
+		return noticeDAO.getList(pager);
 		
 		
 	}

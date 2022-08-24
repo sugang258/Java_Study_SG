@@ -38,8 +38,21 @@
 	</c:forEach>
 	
 	
+
 	</tbody>
 </table>
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+    
+    <c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+    	<li class="page-item"><a class="page-link" href="./list.gang?page=${i}">${i}</a></li>
+   </c:forEach>
+   
+    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+  </ul>
+</nav>
+	
 <c:if test="${not empty sessionScope.member}">
 <a href="./add.gang">글 작성하기</a>
 </c:if>

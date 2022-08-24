@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import com.gang.start.board.impl.BoardDTO;
 import com.gang.start.members.BankMembersDTO;
+import com.gang.start.util.Pager;
 
 @RequestMapping(value="/notice/*")
 @Controller
@@ -29,12 +30,15 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value="list.gang", method=RequestMethod.GET)
-	public ModelAndView getList(@RequestParam(defaultValue = "1") Long page) throws Exception {
+	public ModelAndView getList(Pager pager) throws Exception {
 		
-		System.out.println("page : " +page);
+		
+		System.out.println("page : " +pager.getPage());
 		
 		ModelAndView mv = new ModelAndView();
-		List<BoardDTO> ar = noticeService.getList(page);
+		
+		  System.out.println("page : " +pager);
+		List<BoardDTO> ar = noticeService.getList(pager);
 		mv.addObject("list", ar);
 		
 		mv.setViewName("board/list");
