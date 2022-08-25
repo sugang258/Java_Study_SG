@@ -30,18 +30,20 @@
 	
 	</tr>
 	<tr>
-	<td>${dto.num }</td>
-	<td>${dto.title }</td>
-	<td>${dto.contents }</td>
-	<td>${dto.writer }</td>
-	<td>${dto.regDate }</td>
-	<td>${dto.hit }</td>
+	<td>${boardDTO.num }</td>
+	<td>${boardDTO.title }</td>
+	<td>${boardDTO.contents }</td>
+	<td>${boardDTO.writer }</td>
+	<td>${boardDTO.regDate }</td>
+	<td>${boardDTO.hit }</td>
 	</tr>
 	</table>
 	
-	
-	<a href="./delete.gang?num=${dto.num}">글 삭제하기</a>
-	<a href="./update.gang?num=${dto.num}">글 수정하기</a>
+	<div class="row">
+		<a href ="./reply.gang?num=${boardDTO.num }" class="btn btn-danger">Reply</a>
+	</div>
+	<a href="./delete.gang?num=${boardDTO.num}">글 삭제하기</a>
+	<a href="./update.gang?num=${boardDTO.num}">글 수정하기</a>
 	<a href="./list.gang">공지사항 목록가기</a>
 	
 	<c:import url="../template/footer.jsp"></c:import>

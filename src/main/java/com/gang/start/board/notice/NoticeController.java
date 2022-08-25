@@ -32,6 +32,9 @@ public class NoticeController {
 	@RequestMapping(value="list.gang", method=RequestMethod.GET)
 	public ModelAndView getList(Pager pager) throws Exception {
 		
+		System.out.println(pager.getKind());
+		System.out.println(pager.getSearch());
+		
 		
 		System.out.println("page : " +pager.getPage());
 		

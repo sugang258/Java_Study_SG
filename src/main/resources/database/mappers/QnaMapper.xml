@@ -4,25 +4,50 @@
 		    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 		    
 		    <mapper namespace="com.gang.start.board.qna.QnaDAO">
-			    <select id ="getList" resultType="QnaDTO">
-						SELECT * FROM QNA ORDER BY NUM DESC
+			    <select id ="getList" resultType="QnaDTO" parameterType="com.gang.start.util.Pager">
+						SELECT * FROM
+					(SELECT ROWNUM R ,N.* FROM
+					(SELECT * FROM QNA 
+							WHERE
+								<choose>
+									<when test="kind == 'title'">TITLE</when>
+									<when test="kind == 'writer'">WRITER</when>
+									<otherwise>contents</otherwise>									
+								</choose>
+								LIKE '%'||#{search}||'%'
+							 ORDER BY NUM DESC) N)
+					WHERE R BETWEEN #{startRow} AND #{lastRow}
 					</select>
 					
-					<select id="getDetail" parameterType="QnaDTO" resultType="QnaDTO">
+					<select id="getDetail" parameterType="boardDTO" resultType="QnaDTO">
 						SELECT * FROM QNA WHERE NUM = #{num}
 					</select>
 					
-					<insert id="setAdd" parameterType="QnaDTO">
-						INSERT INTO QNA VALUES (BOARD_SEQ.NEXTVAL,#{title},#{writer},#{contents},SYSDATE,0,0,0,0)
+					<insert id="setAdd" parameterType="boardDTO">
+						<selectKey keyProperty="num" order="BEFORE" resultType="java.lang.Long">
+							SELECT BOARD_SEQ.NEXTVAL FROM DUAL
+						</selectKey>
+						INSERT INTO QNA VALUES (#{num},#{title},#{writer},#{contents},SYSDATE,0,#{num},0,0)
 					</insert>
 					
-					<update id="setUpdate" parameterType="QnaDTO">
+					<update id="setUpdate" parameterType="boardDTO">
 						UPDATE QNA SET TITLE = #{title}, CONTENTS = #{contents} WHERE NUM = #{num}
 					</update>
 					
-					<delete id="setDelete" parameterType="QnaDTO">
+					<delete id="setDelete" parameterType="boardDTO">
 						DELETE FROM QNA WHERE NUM = #{num}
 					</delete>
+					
+					<select id="getCount" resultType="java.lang.Long" parameterType="com.gang.start.util.Pager">
+					SELECT COUNT(NUM) FROM QNA
+					WHERE
+								<choose>
+									<when test="kind == 'title'">TITLE</when>
+									<when test="kind == 'writer'">WRITER</when>
+									<otherwise>contents</otherwise>									
+								</choose>
+								LIKE '%'||#{search}||'%'
+				</select>
 			    
 		    
 		    </mapper>

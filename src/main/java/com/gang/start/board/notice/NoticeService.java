@@ -68,7 +68,7 @@ public class NoticeService implements BoardService {
 		System.out.println(curBlock);
 		*/
 		
-		Long totalCount = noticeDAO.getCount();
+		Long totalCount = noticeDAO.getCount(pager);
 		pager.getNum(totalCount);
 		pager.getRowNum();
 	    

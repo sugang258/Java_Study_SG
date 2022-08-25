@@ -7,7 +7,9 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -15,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.gang.start.board.impl.BoardDTO;
 import com.gang.start.board.notice.NoticeService;
 import com.gang.start.members.BankMembersDTO;
+import com.gang.start.util.Pager;
 
 @RequestMapping(value="/qna/*")
 @Controller
@@ -28,12 +31,27 @@ public class QnaController {
 		return "Qna";
 	}
 	
+	@GetMapping("reply.gang")
+	public ModelAndView setReply(BoardDTO boardDTO, ModelAndView mv) throws Exception {
+		
+		mv.addObject("boardDTO", boardDTO);
+		mv.setViewName("board/reply");
+		return mv;
+	}
+	
+	@PostMapping("reply.gang")
+	public void setReply(BoardDTO boardDTO) throws Exception {
+		
+	}
+	
+	
 	@RequestMapping(value="list.gang", method=RequestMethod.GET)
-	public ModelAndView getList() throws Exception {
+	public ModelAndView getList(Pager pager) throws Exception {
 		
 		ModelAndView mv = new ModelAndView();
-		List<QnaDTO> ar = qnaService.getList();
+		List<BoardDTO> ar = qnaService.getList(pager);
 		mv.addObject("list", ar);
+		mv.addObject("Pager", pager);
 		mv.setViewName("board/list");
 		
 		
@@ -42,17 +60,17 @@ public class QnaController {
 	}
 	
 	@RequestMapping(value="detail.gang", method=RequestMethod.GET)
-	public ModelAndView getDetail(QnaDTO qnaDTO) throws Exception{
+	public ModelAndView getDetail(BoardDTO boardDTO) throws Exception{
 		
 		ModelAndView mv = new ModelAndView();
-		qnaDTO = qnaService.getDetail(qnaDTO);
+		boardDTO = qnaService.getDetail(boardDTO);
 		
 		mv.setViewName("board/detail");
-		mv.addObject("dto",qnaDTO);
+		mv.addObject("boardDTO",boardDTO);
 		
 		return mv;
-		
 	}
+	
 	
 	@RequestMapping(value="add.gang", method=RequestMethod.GET)
 	public String setAdd() throws Exception {
@@ -61,12 +79,12 @@ public class QnaController {
 	
 	
 	@RequestMapping(value="add.gang", method=RequestMethod.POST)
-	public ModelAndView setAdd(QnaDTO qnaDTO, BankMembersDTO bankMembersDTO, HttpSession session) throws Exception {
+	public ModelAndView setAdd(BoardDTO boardDTO, BankMembersDTO bankMembersDTO, HttpSession session) throws Exception {
 		
 		bankMembersDTO = (BankMembersDTO) session.getAttribute("member");
 		ModelAndView mv = new ModelAndView();
-		qnaDTO.setWriter(bankMembersDTO.getUserName());
-		int result = qnaService.setAdd(qnaDTO);
+		boardDTO.setWriter(bankMembersDTO.getUserName());
+		int result = qnaService.setAdd(boardDTO);
 		
 		mv.setViewName("redirect:./list.gang");
 		return mv;
@@ -75,26 +93,28 @@ public class QnaController {
 	}
 	
 	@RequestMapping(value="update.gang", method=RequestMethod.GET)
-	public void setUpdate(QnaDTO qnaDTO, Model model) throws Exception {
+	public String setUpdate(BoardDTO boardDTO, Model model) throws Exception {
 		
-		qnaDTO = qnaService.getDetail(qnaDTO);
-		model.addAttribute("dto",qnaDTO);
+		boardDTO = qnaService.getDetail(boardDTO);
+		model.addAttribute("boardDTO",boardDTO);
+		
+		return "board/update";
 		
 	}
 	
 	@RequestMapping(value="update.gang", method=RequestMethod.POST)
-	public ModelAndView setUpdate(QnaDTO qnaDTO, ModelAndView mv) throws Exception {
-		
-		int result = qnaService.setUpdate(qnaDTO);
-		mv.setViewName("redirect:./detail.gang?num="+qnaDTO.getNum());
+	public ModelAndView setUpdate(BoardDTO boardDTO, ModelAndView mv) throws Exception {
+		System.out.println(boardDTO);
+		int result = qnaService.setUpdate(boardDTO);
+		mv.setViewName("redirect:./detail.gang?num="+boardDTO.getNum());
 		return mv;
 		
 	}
 	
 	@RequestMapping(value="delete.gang", method=RequestMethod.GET)
-	public ModelAndView setDelete(QnaDTO qnaDTO,ModelAndView mv) throws Exception {
+	public ModelAndView setDelete(BoardDTO boardDTO,ModelAndView mv) throws Exception {
 		
-		int result = qnaService.setDelete(qnaDTO);
+		int result = qnaService.setDelete(boardDTO);
 		mv.setViewName("redirect:./list.gang");
 		
 		return mv;

@@ -11,7 +11,6 @@ public class Pager {
 	 * perBlock : 한 페이지에 출력할 번호의 갯수
 	 */
 
-	
 	private Long page;
 	private Long startNum;
 	private Long lastNum;
@@ -24,6 +23,13 @@ public class Pager {
 	private boolean pre;
 	//다음블럭의 유무-다음블럭이 있으면 true, 없으면 false
 	private boolean next;
+	
+	//검색 컬럼의 종류
+	private String kind;
+	
+	//검색어
+	private String search;
+	
 	
 	public Pager() {
 		this.perPage=10L;
@@ -51,7 +57,7 @@ public class Pager {
 		
 		//3.totalPage로 totalBlock 구하기
 		Long totalBlock = totalPage/this.getPerBlock();
-		if(totalBlock % this.getPerBlock() != 0) {
+		if(totalPage % this.getPerBlock() != 0) {
 			totalBlock++;
 		}
 		
@@ -154,6 +160,30 @@ public class Pager {
 	public void setPerBlock(Long perBlock) {
 		this.perBlock = perBlock;
 	}
+
+
+	public String getKind() {
+		return kind;
+	}
+
+
+	public void setKind(String kind) {
+		this.kind = kind;
+	}
+
+
+	public String getSearch() {
+		if(this.search == null) {
+			this.search="";
+		}
+		return search;
+	}
+
+
+	public void setSearch(String search) {
+		this.search = search;
+	}
+	
 	
 	
 

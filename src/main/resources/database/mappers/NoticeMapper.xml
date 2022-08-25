@@ -6,7 +6,15 @@
 				<select id ="getList" resultType="NoticeDTO" parameterType="com.gang.start.util.Pager">
 					SELECT * FROM
 					(SELECT ROWNUM R ,N.* FROM
-					(SELECT * FROM NOTICE ORDER BY NUM DESC) N)
+					(SELECT * FROM NOTICE 
+							WHERE
+								<choose>
+									<when test="kind == 'title'">TITLE</when>
+									<when test="kind == 'writer'">WRITER</when>
+									<otherwise>contents</otherwise>									
+								</choose>
+								LIKE '%'||#{search}||'%'
+							 ORDER BY NUM DESC) N)
 					WHERE R BETWEEN #{startRow} AND #{lastRow}
 				</select>
 				
@@ -26,8 +34,15 @@
 					DELETE FROM NOTICE WHERE NUM = #{num}
 				</delete>
 				
-				<select id="getCount" resultType="java.lang.Long">
+				<select id="getCount" resultType="java.lang.Long" parameterType="com.gang.start.util.Pager">
 					SELECT COUNT(NUM) FROM NOTICE
+					WHERE
+								<choose>
+									<when test="kind == 'title'">TITLE</when>
+									<when test="kind == 'writer'">WRITER</when>
+									<otherwise>contents</otherwise>									
+								</choose>
+								LIKE '%'||#{search}||'%'
 				</select>
 			
 			

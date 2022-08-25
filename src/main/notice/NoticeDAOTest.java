@@ -38,8 +38,8 @@ public class NoticeDAOTest extends MyAbstractTest  {
 	
 	@Test
 	public void setAddTest() throws Exception {
-		/*
-		for(int i=0;i<100;i++) {
+		
+		for(int i=101;i<150;i++) {
 			NoticeDTO noticeDTO = new NoticeDTO();
 			noticeDTO.setTitle("TITLE"+i);
 			noticeDTO.setContents("contents" + i);
@@ -52,13 +52,14 @@ public class NoticeDAOTest extends MyAbstractTest  {
 		                
 		       }
 		}
+	}
 		/*
-		 */
 		NoticeDTO noticeDTO = new NoticeDTO();
 		noticeDTO.setTitle("TITLE");
 		noticeDTO.setContents("contents");
 		noticeDTO.setWriter("writer");
 	}
+	*/
 	
 	//@Test
 	public void setUpdate() throws Exception {
@@ -86,7 +87,7 @@ public class NoticeDAOTest extends MyAbstractTest  {
 	}
 	
 	
-	@Test
+	//@Test
 	public void getCount() throws Exception {
 		long result = noticeDAO.getCount();
 		assertEquals(113L,result);

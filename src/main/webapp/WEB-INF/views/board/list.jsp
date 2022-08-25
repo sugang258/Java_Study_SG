@@ -17,6 +17,34 @@
 <body>
 <c:import url="../template/header.jsp"></c:import>
 <h2 class="align-center">${board}  List</h2>
+
+<div class="row mb-3">
+	<form action="./list.gang" class="row row-cols-lg-auto g-3 align-items-center">
+
+  <div class="col-12">
+    <label class="visually-hidden" for="kind">Kind</label>
+    <select name="kind" class="form-select" id="kind">
+      <option value="contents">Contents</option>
+      <option value="title">Title</option>
+      <option value="writer">Writer</option>
+    </select>
+  </div>
+  
+   <div class="col-12">
+    <label class="visually-hidden" for="search">input</label>
+    <div class="input-group">
+      <input type="text" name="search" value="" class="form-control" id="search" placeholder="Input">
+    </div>
+  </div>
+
+
+  <div class="col-12">
+    <button type="submit" class="btn btn-primary">Search</button>
+  </div>
+</form>
+</div>
+
+
 <table border = "1" class="table table-striped align-center ">
 
 	<thead>
@@ -44,10 +72,10 @@
 <nav aria-label="Page navigation example">
   <ul class="pagination">
   <c:if test="${pager.pre}">
-    <li class="page-item"><a class="page-link" href="./list.gang?page=${pager.startNum-1}">Previous</a></li>
+    <li class="page-item"><a class="page-link" href="./list.gang?page=${pager.startNum-1}&kind=${pager.kind}&search=${pager.search}">Previous</a></li>
     </c:if>
     <c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-    	<li class="page-item"><a class="page-link" href="./list.gang?page=${i}">${i}</a></li>
+    	<li class="page-item"><a class="page-link" href="./list.gang?page=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
    </c:forEach>
    <!-- 
    <c:choose>
@@ -60,7 +88,7 @@
    </c:choose>
     -->
    <li class="page-item ${pager.next?'':'disabled'}">
-    <a class="page-link" href="./list.gang?page=${pager.lastNum+1}">Next</a></li>
+    <a class="page-link" href="./list.gang?page=${pager.lastNum+1}&kind=${pager.kind}&search=${pager.search}">Next</a></li>
   </ul>
 </nav>
 	

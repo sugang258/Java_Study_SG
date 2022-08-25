@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.gang.start.board.impl.BoardDAO;
 import com.gang.start.board.impl.BoardDTO;
+import com.gang.start.util.Pager;
 
 @Repository
 public class QnaDAO {
@@ -18,34 +19,38 @@ public class QnaDAO {
 	
 	
 	
-	public List<QnaDTO> getList() throws Exception {
+	public List<BoardDTO> getList(Pager pager) throws Exception {
 
-		return sqlSession.selectList(NAMESPACE+"getList");
+		return sqlSession.selectList(NAMESPACE+"getList", pager);
 	}
 	
-	public QnaDTO getDetail(QnaDTO qnaDTO) throws Exception {
+	public BoardDTO getDetail(BoardDTO boardDTO) throws Exception {
 
-		return sqlSession.selectOne(NAMESPACE+"getDetail", qnaDTO);
+		return sqlSession.selectOne(NAMESPACE+"getDetail", boardDTO);
 	}
 	
-	public int setAdd(QnaDTO qnaDTO) throws Exception {
+	public int setAdd(BoardDTO boardDTO) throws Exception {
 
-		return sqlSession.insert(NAMESPACE+"setAdd", qnaDTO);
+		return sqlSession.insert(NAMESPACE+"setAdd", boardDTO);
 	}
 
-	public int setUpdate(QnaDTO qnaDTO) throws Exception {
+	public int setUpdate(BoardDTO boardDTO) throws Exception {
 
-		return sqlSession.update(NAMESPACE+"setUpdate", qnaDTO);
-	}
-	
-	public int setDelete(QnaDTO qnaDTO) throws Exception {
-
-		return sqlSession.delete(NAMESPACE+"setDelete", qnaDTO);
+		return sqlSession.update(NAMESPACE+"setUpdate", boardDTO);
 	}
 	
-	public int setReply(QnaDTO qnaDTO) throws Exception{
+	public int setDelete(BoardDTO boardDTO) throws Exception {
+
+		return sqlSession.delete(NAMESPACE+"setDelete", boardDTO);
+	}
+	
+	public int setReply(BoardDTO boardDTO) throws Exception{
 		
-		return sqlSession.insert(NAMESPACE+"setReply", qnaDTO);
+		return sqlSession.insert(NAMESPACE+"setReply", boardDTO);
+	}
+	public Long getCount(Pager pager) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(NAMESPACE+"getCount",pager);
 	}
 	
 	
