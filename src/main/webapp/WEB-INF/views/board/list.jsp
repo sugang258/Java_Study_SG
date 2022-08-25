@@ -57,7 +57,11 @@
  
 	<c:forEach items="${list}" var="dto">
 	<tr>
-	<td><a href="./detail.gang?num=${dto.num}">${dto.num}</a></td>
+	<td>
+	<c:catch>
+	<c:forEach begin="1" end="${dto.depth}">--</c:forEach>
+	</c:catch>
+	<a href="./detail.gang?num=${dto.num}">${dto.num}</a></td>
 	<td>${dto.title }</td>
 	<td>${dto.writer }</td>
 	<td>${dto.regDate }</td>

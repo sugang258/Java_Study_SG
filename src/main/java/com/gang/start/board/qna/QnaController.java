@@ -40,8 +40,12 @@ public class QnaController {
 	}
 	
 	@PostMapping("reply.gang")
-	public void setReply(BoardDTO boardDTO) throws Exception {
-		
+	public String setReply(QnaDTO qnaDTO, HttpSession session, BankMembersDTO bankMembersDTO) throws Exception {
+		bankMembersDTO = (BankMembersDTO) session.getAttribute("member");
+		qnaDTO.setWriter(bankMembersDTO.getUserName());
+		int result = qnaService.setReply(qnaDTO);
+
+		return "redirect:./list.gang";
 	}
 	
 	

@@ -4,6 +4,17 @@
 		    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 		    
 		    <mapper namespace="com.gang.start.board.qna.QnaDAO">
+		    
+		    	<insert id="setReplyAdd" parameterType="QnaDTO">
+		    		<selectKey keyProperty="num" order="BEFORE" resultType="java.lang.Long">
+							SELECT BOARD_SEQ.NEXTVAL FROM DUAL
+					</selectKey>
+		    		INSERT INTO QNA VALUES (#{num},#{title},#{writer},#{contents},SYSDATE,0,#{ref},#{step},#{depth})
+		    	</insert>
+		    
+		    	<update id ="setStepUpdate" parameterType="QnaDTO">
+		    		UPDATE QNA SET STEP = STEP+1 WHERE STEP > #{step} AND REF = #{ref}
+		    	</update>
 			    <select id ="getList" resultType="QnaDTO" parameterType="com.gang.start.util.Pager">
 						SELECT * FROM
 					(SELECT ROWNUM R ,N.* FROM
@@ -15,7 +26,7 @@
 									<otherwise>contents</otherwise>									
 								</choose>
 								LIKE '%'||#{search}||'%'
-							 ORDER BY NUM DESC) N)
+							 ORDER BY REF DESC, STEP ASC) N)
 					WHERE R BETWEEN #{startRow} AND #{lastRow}
 					</select>
 					

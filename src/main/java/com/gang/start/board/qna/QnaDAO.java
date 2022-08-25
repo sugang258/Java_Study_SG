@@ -53,6 +53,14 @@ public class QnaDAO {
 		return sqlSession.selectOne(NAMESPACE+"getCount",pager);
 	}
 	
+	public int setReplyAdd(QnaDTO qnaDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE+"setReplyAdd",qnaDTO);
+	}
+	
+	public int setStepUpdate(QnaDTO qnaDTO) throws Exception {
+		return sqlSession.update(NAMESPACE+"setStepUpdate",qnaDTO);
+	}
+	
 	
 	
 
