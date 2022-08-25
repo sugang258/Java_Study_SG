@@ -40,6 +40,7 @@ public class NoticeController {
 		  System.out.println("page : " +pager);
 		List<BoardDTO> ar = noticeService.getList(pager);
 		mv.addObject("list", ar);
+		mv.addObject("Pager", pager);
 		
 		mv.setViewName("board/list");
 		
