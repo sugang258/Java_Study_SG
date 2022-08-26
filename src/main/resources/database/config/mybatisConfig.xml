@@ -12,6 +12,7 @@
 		<typeAlias type="com.gang.start.board.notice.NoticeDTO" alias="NoticeDTO"/>
 		<typeAlias type="com.gang.start.board.qna.QnaDTO" alias="QnaDTO" />
 		<typeAlias type="com.gang.start.board.impl.BoardDTO" alias="boardDTO"/>
+		<typeAlias type="com.gang.start.members.MemberFileDTO" alias="MemberFileDTO" />
 		<typeAlias type="java.util.List" alias="List"/>
 	</typeAliases>
 	 

@@ -113,8 +113,17 @@
        
       
       </c:forEach>
+      
       </tbody>
+     
+   
+      
    </table>
+    <div class="row">
+   		<img alt="" src="../resources/upload/member/${dto.memberFileDTO.fileName}">
+  	  </div>
+  
+   
 	
 	
 	<c:import url="../template/footer.jsp"></c:import>

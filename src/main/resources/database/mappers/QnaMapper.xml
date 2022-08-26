@@ -5,11 +5,13 @@
 		    
 		    <mapper namespace="com.gang.start.board.qna.QnaDAO">
 		    
+		    	
+		    	
 		    	<insert id="setReplyAdd" parameterType="QnaDTO">
 		    		<selectKey keyProperty="num" order="BEFORE" resultType="java.lang.Long">
 							SELECT BOARD_SEQ.NEXTVAL FROM DUAL
 					</selectKey>
-		    		INSERT INTO QNA VALUES (#{num},#{title},#{writer},#{contents},SYSDATE,0,#{ref},#{step},#{depth})
+		    		INSERT (NUM, TITLE, CONTENTS, WRITER, REGDATE, HIT REF, STEP, DEPTH) INTO QNA VALUES (#{num},#{title},#{contents},#{writer},SYSDATE,0,#{ref},#{step},#{depth})
 		    	</insert>
 		    
 		    	<update id ="setStepUpdate" parameterType="QnaDTO">
@@ -38,7 +40,7 @@
 						<selectKey keyProperty="num" order="BEFORE" resultType="java.lang.Long">
 							SELECT BOARD_SEQ.NEXTVAL FROM DUAL
 						</selectKey>
-						INSERT INTO QNA VALUES (#{num},#{title},#{writer},#{contents},SYSDATE,0,#{num},0,0)
+						INSERT (NUM, TITLE, CONTENTS, WRITER, REGDATE, HIT REF, STEP, DEPTH) INTO QNA VALUES (#{num},#{title},#{contents},#{writer},SYSDATE,0,#{num},0,0)
 					</insert>
 					
 					<update id="setUpdate" parameterType="boardDTO">

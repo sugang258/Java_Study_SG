@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpSession;
 
@@ -59,7 +60,7 @@ public class NoticeController {
 		
 		mv.setViewName("board/detail");
 		
-		mv.addObject("dto",boardDTO);
+		mv.addObject("boardDTO",boardDTO);
 		
 		return mv;
 		
@@ -72,12 +73,12 @@ public class NoticeController {
 	
 	
 	@RequestMapping(value="add.gang", method=RequestMethod.POST)
-	public ModelAndView setAdd(BoardDTO boardDTO, BankMembersDTO bankMembersDTO, HttpSession session) throws Exception {
+	public ModelAndView setAdd(BoardDTO boardDTO, BankMembersDTO bankMembersDTO, HttpSession session, MultipartFile [] files) throws Exception {
 		
 		bankMembersDTO = (BankMembersDTO) session.getAttribute("member");
 		ModelAndView mv = new ModelAndView();
 		boardDTO.setWriter(bankMembersDTO.getUserName());
-		int result = noticeService.setAdd(boardDTO);
+		int result = noticeService.setAdd(boardDTO,files);
 		
 		mv.setViewName("redirect:./list.gang");
 		return mv;
@@ -89,7 +90,7 @@ public class NoticeController {
 	public String setUpdate(BoardDTO boardDTO, Model model) throws Exception {
 		
 		boardDTO = noticeService.getDetail(boardDTO);
-		model.addAttribute("dto",boardDTO);
+		model.addAttribute("boardDTO",boardDTO);
 		
 		return "board/update";
 		

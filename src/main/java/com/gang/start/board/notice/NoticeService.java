@@ -1,11 +1,17 @@
 package com.gang.start.board.notice;
 
+import java.io.File;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
+
+import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.gang.start.board.impl.BoardDTO;
 import com.gang.start.board.impl.BoardService;
@@ -16,6 +22,8 @@ public class NoticeService implements BoardService {
 	
 	@Autowired
 	private NoticeDAO noticeDAO;
+	@Autowired
+	private ServletContext servletContext;
 	
 	//글목록
 	@Override
@@ -86,8 +94,35 @@ public class NoticeService implements BoardService {
 		
 	//글쓰기
 	@Override
-	public int setAdd(BoardDTO boardDTO) throws Exception{
-		return noticeDAO.setAdd(boardDTO);
+	public int setAdd(BoardDTO boardDTO, MultipartFile[] files) throws Exception{
+		
+		String realPath = servletContext.getRealPath("resources/upload/notice");
+		
+		File file = new File(realPath);
+		
+			
+				
+			if(!file.exists()) {
+				file.mkdirs();
+			}
+		
+		for(MultipartFile mf : files) {
+			if(mf.isEmpty()) {
+				continue;
+			}
+			file = new File(realPath);
+			System.out.println("size : " + mf.getSize());
+			String fileName = UUID.randomUUID().toString();
+			
+			
+			fileName = fileName + "_" + mf.getOriginalFilename();
+			
+			file = new File(file,fileName);
+			
+			mf.transferTo(file);
+		}
+		
+		return 0; //noticeDAO.setAdd(boardDTO);
 	}
 		
 	//글수정

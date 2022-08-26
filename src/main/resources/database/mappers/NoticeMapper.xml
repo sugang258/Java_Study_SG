@@ -23,7 +23,7 @@
 				</select>
 				
 				<insert id="setAdd" parameterType="NoticeDTO">
-					INSERT INTO NOTICE VALUES (BOARD_SEQ.NEXTVAL,#{title},#{writer},#{contents},SYSDATE,0)
+					INSERT INTO NOTICE VALUES (BOARD_SEQ.NEXTVAL,#{title},#{contents},#{writer},SYSDATE,0)
 				</insert>
 				
 				<update id="setUpdate" parameterType="NoticeDTO">

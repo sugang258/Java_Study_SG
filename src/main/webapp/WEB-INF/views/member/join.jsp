@@ -15,7 +15,7 @@
 <body>
 	<c:import url="../template/header.jsp"></c:import>
 	
-	<form action="join.gang" class="align-center" method="post">
+	<form action="./join.gang" class="align-center" method="post" enctype="multipart/form-data">
   <div class="mb-3 mt-4">
     <label for="exampleInputEmail1" class="form-label">ID</label>
     </div>
@@ -39,7 +39,7 @@
     <label for="exampleInputEmail1" class="form-label">Email</label>
     </div>
     <div>
-    <input type="email" class="col-lg-2" name="Email">
+    <input type="text" class="col-lg-2" name="Email">
   </div>
   <div class="mb-3 mt-4">
     <label for="exampleInputPassword1" class="form-label">Phone</label>
@@ -48,8 +48,15 @@
     <input type="text" class="col-lg-2" name="phone">
   </div>
   
-  <button type="submit" class="btn btn-primary mt-4" onclick="location.href='login'">Submit</button>
-  <button class="btn btn-primary mt-4" onclick="location.href='login'">뒤로가기</button>
+  <div class="mb-3 mt-4">
+    <label for="files" class="form-label">Photo</label>
+    </div>
+    <div>
+    <input type="file" class="col-lg-2" name="photo" id="files">
+  </div>
+  
+  <button type="submit" class="btn btn-primary mt-4" >Submit</button>
+  <button class="btn btn-primary mt-4" onclick="location.href='login.gang'">뒤로가기</button>
 </form>
 
     	<c:import url="../template/footer.jsp"></c:import>

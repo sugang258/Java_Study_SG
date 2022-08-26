@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.gang.start.account.BankAccountDTO;
@@ -81,7 +82,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "join.gang", method=RequestMethod.POST)
-	public String join(BankMembersDTO bankMembersDTO) throws Exception {
+	public String join(BankMembersDTO bankMembersDTO, MultipartFile photo) throws Exception {
 		System.out.println("회원가입 POST 실행");
 		
 		/*
@@ -94,9 +95,16 @@ public class MemberController {
 		*/
 		
 
-		int result = bankMembersService.setJoin(bankMembersDTO);
+		//int result = bankMembersService.setJoin(bankMembersDTO);
 		
-		System.out.println(result);
+		//System.out.println(result);
+		
+		System.out.println(photo);
+		System.out.println("upload 파일명 : " +photo.getOriginalFilename());
+		System.out.println("upload 파라미터명 : "+photo.getName());
+		System.out.println("upload 하는 file의 크기 : " + photo.getSize());
+		int result = bankMembersService.setJoin(bankMembersDTO,photo);
+		
 		return "redirect:./login.gang";
 	}
 	

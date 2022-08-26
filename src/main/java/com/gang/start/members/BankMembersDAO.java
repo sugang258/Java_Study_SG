@@ -17,6 +17,10 @@ public class BankMembersDAO implements MembersDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE ="com.gang.start.members.BankMembersDAO.";
 	
+	public int setAddFile(MemberFileDTO memberFileDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE+"setAddFile", memberFileDTO);
+	}
+	
 	public int setJoin(BankMembersDTO bankMembersDTO) throws Exception {
 		// TODO Auto-generated method stub
 		

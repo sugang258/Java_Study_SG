@@ -3,6 +3,8 @@ package com.gang.start.board.impl;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.gang.start.util.Pager;
 
 public interface BoardDAO {
