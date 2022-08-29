@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.gang.start.account.BankAccountDAO;
 import com.gang.start.account.BankAccountDTO;
+import com.gang.start.util.FileManager;
 
 @Service
 public class BankMembersService {
@@ -23,7 +24,11 @@ public class BankMembersService {
 	@Autowired
 	private BankMembersDAO bankMembersDAO;
 	@Autowired
+	private FileManager fileManager; 
+	/*
+	@Autowired
 	private ServletContext servletContext;
+	*/
 	/*
 	@Autowired
 	private BankAccountDAO bankAccountDAO;
@@ -31,27 +36,43 @@ public class BankMembersService {
 	
 
 	//bankMembers 회원가입
-		public int setJoin(BankMembersDTO bankMembersDTO,MultipartFile photo) throws Exception{
+		public int setJoin(BankMembersDTO bankMembersDTO,MultipartFile photo, ServletContext servletContext) throws Exception{
 			
 			
 			int result = bankMembersDAO.setJoin(bankMembersDTO);
+			
+			String path = "resources/upload/member";
+			
+			String fileName = fileManager.saveFile(path, servletContext, photo);
+			
+			if(!photo.isEmpty()) {
+			
+			MemberFileDTO memberFileDTO =new MemberFileDTO();
+			memberFileDTO.setFileName(fileName);
+			memberFileDTO.setOriName(photo.getOriginalFilename());
+			memberFileDTO.setUserName(bankMembersDTO.getUserName());
+			bankMembersDAO.setAddFile(memberFileDTO);
+			}
 			//1. HDD에 파일을 저장
 			//	파일 저장시에 경로는 Tomcat 기준이 아니라 OS의 기준으로 설정
 			
 			//2. 저장된 파일정보를 DB에 저장
-			
+			/*
 			String realPath = servletContext.getRealPath("resources/upload/member");
 			System.out.println("RealPath : "+realPath );
 			
 			File file = new File(realPath);
+			*/
 			
+			//file 첨부가 없을 때 구분
 			
-			//***file 첨부가 없을 때 구분
 			/*
 			if(photo.getSize() != 0) {
 				
 			}
 			*/
+			
+		/*
 			if(!photo.isEmpty()) {
 				
 				
@@ -88,9 +109,12 @@ public class BankMembersService {
 				
 				System.out.println(fileName);
 				
+				
 			}
+		*/
 			
 			return result;
+			
 		}
 		
 		//검색어를 입력해서 id를 찾기

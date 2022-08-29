@@ -10,7 +10,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.gang.start.board.impl.BoardDAO;
 import com.gang.start.board.impl.BoardDTO;
-import com.gang.start.util.Pager;
+import com.gang.start.board.impl.BoardFileDTO;
+import com.gang.start.util.*;
 
 @Repository
 public class NoticeDAO implements BoardDAO {
@@ -53,6 +54,11 @@ public class NoticeDAO implements BoardDAO {
 	public Long getCount(Pager pager) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(NAMESPACE+"getCount",pager);
+	}
+	
+	@Override
+	public int setAddFile(BoardFileDTO boardFileDTO)  throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"setAddFile", boardFileDTO);
 	}
 	
 	

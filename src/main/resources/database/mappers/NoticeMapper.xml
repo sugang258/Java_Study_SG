@@ -17,20 +17,45 @@
 							 ORDER BY NUM DESC) N)
 					WHERE R BETWEEN #{startRow} AND #{lastRow}
 				</select>
-				
-				<select id="getDetail" parameterType="NoticeDTO" resultType="NoticeDTO">
-					SELECT * FROM NOTICE WHERE NUM = #{num}
+				<select id="setAddFile" parameterType="boardFileDTO">
+					INSERT INTO NOTICEFILE(FILENUM, FILENAME, ORINAME, NUM) VALUES (FILE_SEQ.NEXTVAL, #{FILENAME},#{ORINAME},#{NUM}) 
 				</select>
 				
-				<insert id="setAdd" parameterType="NoticeDTO">
+				<select id="getDetail" parameterType="boardDTO" resultMap="getDetailResult">
+					SELECT N.*, NF.*
+					FROM NOTICE N 
+						LEFT JOIN
+						NOTICEFILE NF
+						ON N.NUM = NF.NUM
+					WHERE N.NUM = #{num}
+				</select>
+				
+				<resultMap type="NoticeDTO" id="getDetailResult">
+					<id column="num" property="num"/>
+					<result column="title" property="title"/>
+					<result column="writer" property="writer" />
+					<result column="contents" property="contents"/>
+					<result column="regDATE" property="regDate" />
+					<result column="hit" property="hit"/>
+					<collection property="boardFileDTOs" javaType="List" ofType="BoardFileDTO">
+						<id column="FILENUM" property="fileNum"/>
+						<result column="FILENAME" property="fileName"/>
+						<result column="ORINAME" property="oriName"/>
+					</collection>
+				</resultMap>
+				
+				<insert id="setAdd" parameterType="boardDTO">
+					<selectKey order="BEFORE" keyProperty="num" resultType="Long">
+						SELECT BOARD_SEQ.NEXTVAL FROM DUAL
+					</selectKey>
 					INSERT INTO NOTICE VALUES (BOARD_SEQ.NEXTVAL,#{title},#{contents},#{writer},SYSDATE,0)
 				</insert>
 				
-				<update id="setUpdate" parameterType="NoticeDTO">
+				<update id="setUpdate" parameterType="boardDTO">
 					UPDATE NOTICE SET TITLE = #{title}, CONTENTS = #{contents} WHERE NUM = #{num}
 				</update>
 				
-				<delete id="setDelete" parameterType="NoticeDTO">
+				<delete id="setDelete" parameterType="boardDTO">
 					DELETE FROM NOTICE WHERE NUM = #{num}
 				</delete>
 				

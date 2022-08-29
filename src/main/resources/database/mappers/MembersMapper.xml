@@ -6,10 +6,10 @@
          <mapper namespace="com.gang.start.members.BankMembersDAO">
          
          
-		    	<insert id="setAddFile" parameterType="com.gang.start.members.MemberFileDTO">
+		    <insert id="setAddFile" parameterType="MemberFileDTO">
 		    		INSERT INTO MEMBERFILE(FILENUM, FILENAME, ORINAME, USERNAME) VALUES(FILE_SEQ.NEXTVAL, #{fileName}, #{oriName}, #{userName})
 		    	
-		    	</insert>
+		    </insert>
          	<!-- 로그인 -->
          	<select id="getLogin" parameterType="BankMembersDTO" resultType="BankMembersDTO">
          		SELECT USERNAME, PASSWORD FROM BANKMEMBERS WHERE USERNAME = #{userName} AND PASSWORD = #{password}

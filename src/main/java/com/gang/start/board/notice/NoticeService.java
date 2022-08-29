@@ -15,6 +15,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.gang.start.board.impl.BoardDTO;
 import com.gang.start.board.impl.BoardService;
+import com.gang.start.board.impl.BoardFileDTO;
+import com.gang.start.util.FileManager;
 import com.gang.start.util.Pager;
 
 @Service
@@ -23,7 +25,11 @@ public class NoticeService implements BoardService {
 	@Autowired
 	private NoticeDAO noticeDAO;
 	@Autowired
+	private FileManager fileManager;
+	/*
+	@Autowired
 	private ServletContext servletContext;
+	*/
 	
 	//글목록
 	@Override
@@ -94,35 +100,26 @@ public class NoticeService implements BoardService {
 		
 	//글쓰기
 	@Override
-	public int setAdd(BoardDTO boardDTO, MultipartFile[] files) throws Exception{
+	public int setAdd(BoardDTO boardDTO, MultipartFile[] files, ServletContext servletContext) throws Exception{
 		
-		String realPath = servletContext.getRealPath("resources/upload/notice");
+		int result = noticeDAO.setAdd(boardDTO);
 		
-		File file = new File(realPath);
-		
-			
-				
-			if(!file.exists()) {
-				file.mkdirs();
-			}
+		String path = "resources/upload/notice";
 		
 		for(MultipartFile mf : files) {
+		
 			if(mf.isEmpty()) {
 				continue;
 			}
-			file = new File(realPath);
-			System.out.println("size : " + mf.getSize());
-			String fileName = UUID.randomUUID().toString();
-			
-			
-			fileName = fileName + "_" + mf.getOriginalFilename();
-			
-			file = new File(file,fileName);
-			
-			mf.transferTo(file);
+		String fileName = fileManager.saveFile(path, servletContext, mf);
+		BoardFileDTO boardFileDTO = new BoardFileDTO();
+		boardFileDTO.setFileName(fileName);
+		boardFileDTO.setOriName(mf.getOriginalFilename());
+		boardFileDTO.setNum(boardDTO.getNum());
+		noticeDAO.setAddFile(boardFileDTO);
 		}
-		
-		return 0; //noticeDAO.setAdd(boardDTO);
+	
+		return result; //noticeDAO.setAdd(boardDTO);
 	}
 		
 	//글수정

@@ -2,6 +2,7 @@ package com.gang.start.board.qna;
 
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,7 @@ public class QnaController {
 	
 	@ModelAttribute("board")
 	public String getBoard() {
-		return "Qna";
+		return "qna";
 	}
 	
 	@GetMapping("reply.gang")
@@ -84,12 +85,12 @@ public class QnaController {
 	
 	
 	@RequestMapping(value="add.gang", method=RequestMethod.POST)
-	public ModelAndView setAdd(BoardDTO boardDTO, BankMembersDTO bankMembersDTO, HttpSession session,MultipartFile [] files) throws Exception {
+	public ModelAndView setAdd(BoardDTO boardDTO, BankMembersDTO bankMembersDTO, HttpSession session,MultipartFile [] files, ServletContext servletContext) throws Exception {
 		
 		bankMembersDTO = (BankMembersDTO) session.getAttribute("member");
 		ModelAndView mv = new ModelAndView();
 		boardDTO.setWriter(bankMembersDTO.getUserName());
-		int result = qnaService.setAdd(boardDTO,files);
+		int result = qnaService.setAdd(boardDTO,files,servletContext);
 		
 		mv.setViewName("redirect:./list.gang");
 		return mv;

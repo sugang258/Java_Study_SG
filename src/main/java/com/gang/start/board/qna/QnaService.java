@@ -2,6 +2,8 @@ package com.gang.start.board.qna;
 
 import java.util.List;
 
+import javax.servlet.ServletContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -50,7 +52,7 @@ public class QnaService implements BoardService {
 		
 	//글쓰기
 	@Override
-	public int setAdd(BoardDTO boardDTO,MultipartFile [] files) throws Exception{
+	public int setAdd(BoardDTO boardDTO,MultipartFile [] files,ServletContext servletContext) throws Exception{
 		System.out.println();
 		
 		return QnaDAO.setAdd(boardDTO);

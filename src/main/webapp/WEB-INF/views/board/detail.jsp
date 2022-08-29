@@ -39,6 +39,14 @@
 	</tr>
 	</table>
 	
+	 <div class="row">
+   		<c:forEach items="${boardDTO.boardFileDTOs }" var="fileDTO">
+   			<p>
+   			<a href="../resources/upload/${board }/${fileDTO.fileName}">${fileName.oriName}</a>
+   			</p>
+   		</c:forEach>
+  	  </div>
+	
 	<div class="row">
 		<a href ="./reply.gang?num=${boardDTO.num }" class="btn btn-danger">Reply</a>
 	</div>

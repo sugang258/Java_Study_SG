@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 
@@ -27,7 +29,7 @@ public class NoticeController {
 	
 	@ModelAttribute("board")
 	public String getBoard() {
-		return "Notice";
+		return "notice";
 	}
 	
 	@RequestMapping(value="list.gang", method=RequestMethod.GET)
@@ -73,12 +75,12 @@ public class NoticeController {
 	
 	
 	@RequestMapping(value="add.gang", method=RequestMethod.POST)
-	public ModelAndView setAdd(BoardDTO boardDTO, BankMembersDTO bankMembersDTO, HttpSession session, MultipartFile [] files) throws Exception {
+	public ModelAndView setAdd(BoardDTO boardDTO, BankMembersDTO bankMembersDTO, HttpSession session, MultipartFile [] files, ServletContext servletContext) throws Exception {
 		
 		bankMembersDTO = (BankMembersDTO) session.getAttribute("member");
 		ModelAndView mv = new ModelAndView();
 		boardDTO.setWriter(bankMembersDTO.getUserName());
-		int result = noticeService.setAdd(boardDTO,files);
+		int result = noticeService.setAdd(boardDTO,files, servletContext);
 		
 		mv.setViewName("redirect:./list.gang");
 		return mv;
