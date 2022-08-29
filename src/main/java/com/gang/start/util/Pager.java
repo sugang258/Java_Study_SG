@@ -112,6 +112,7 @@ public class Pager {
 
 
 	public Long getPage() {
+		
 		if(this.page == null || this.page < 1) {
 			this.page = 1L;
 		}
@@ -146,9 +147,11 @@ public class Pager {
 		this.lastRow = lastRow;
 	}
 	public Long getPerPage() {
+		
 		if(this.perPage == null) {
 			this.perPage=10L;
 		}
+		
 		return perPage;
 	}
 	public void setPerPage(Long perPage) {

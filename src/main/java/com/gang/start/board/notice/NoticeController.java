@@ -45,6 +45,7 @@ public class NoticeController {
 		
 		  System.out.println("page : " +pager);
 		List<BoardDTO> ar = noticeService.getList(pager);
+		System.out.println("ar size-----" + ar.size());
 		mv.addObject("list", ar);
 		mv.addObject("Pager", pager);
 		
@@ -75,12 +76,13 @@ public class NoticeController {
 	
 	
 	@RequestMapping(value="add.gang", method=RequestMethod.POST)
-	public ModelAndView setAdd(BoardDTO boardDTO, BankMembersDTO bankMembersDTO, HttpSession session, MultipartFile [] files, ServletContext servletContext) throws Exception {
+	public ModelAndView setAdd(BoardDTO boardDTO, BankMembersDTO bankMembersDTO, HttpSession session, MultipartFile [] files) throws Exception {
 		
 		bankMembersDTO = (BankMembersDTO) session.getAttribute("member");
 		ModelAndView mv = new ModelAndView();
+		System.out.println(boardDTO.getContents());
 		boardDTO.setWriter(bankMembersDTO.getUserName());
-		int result = noticeService.setAdd(boardDTO,files, servletContext);
+		int result = noticeService.setAdd(boardDTO,files, session.getServletContext());
 		
 		mv.setViewName("redirect:./list.gang");
 		return mv;

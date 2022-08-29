@@ -40,9 +40,9 @@
 	</table>
 	
 	 <div class="row">
-   		<c:forEach items="${boardDTO.boardFileDTOs }" var="fileDTO">
+   		<c:forEach items="${boardDTO.boardFileDTOs}" var="fileDTO">
    			<p>
-   			<a href="../resources/upload/${board }/${fileDTO.fileName}">${fileName.oriName}</a>
+   			<a href="../resources/upload/${board}/${fileDTO.fileName}">${fileDTO.oriName}</a>
    			</p>
    		</c:forEach>
   	  </div>

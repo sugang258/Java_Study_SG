@@ -21,7 +21,7 @@
 <body>
 <c:import url="../template/header.jsp"></c:import>
 
-<form action ="add.gang" class="align-center" method="post" enctype="multipart/form-data">
+<form action ="./add.gang" class="align-center" method="post" enctype="multipart/form-data">
   	<h1 class="align-center">${board } ADD</h1>
   
   <div class="mb-3 mt-4">
@@ -34,7 +34,7 @@
     <label  class="form-label">Contents</label>
     </div>
     <div>
-    <input type="text" class="col-lg-2" name="contents" id="contents">
+    <textarea class="col-lg-2" name="contents" id="contents"></textarea>
   </div>
   
   <div class="mb-3 mt-4">

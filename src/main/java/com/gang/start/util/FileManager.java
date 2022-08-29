@@ -23,7 +23,7 @@ public class FileManager {
 		System.out.println(realPath);
 		
 		//2. 폴더(directory) 체크
-		File file = new File(path);
+		File file = new File(realPath);
 		
 		if(!file.exists()) {
 			file.mkdirs();

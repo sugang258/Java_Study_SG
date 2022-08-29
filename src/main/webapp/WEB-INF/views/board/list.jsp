@@ -59,7 +59,7 @@
 	<tr>
 	<td>
 	<c:catch>
-	<c:forEach begin="1" end="${dto.depth}">--</c:forEach>
+		<c:forEach begin="1" end="${dto.depth}">--</c:forEach>
 	</c:catch>
 	<a href="./detail.gang?num=${dto.num}">${dto.num}</a></td>
 	<td>${dto.title }</td>
