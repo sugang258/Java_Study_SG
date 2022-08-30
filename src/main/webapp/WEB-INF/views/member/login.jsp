@@ -30,14 +30,14 @@
 	<form action ="login.gang"  method="post" id="login_submit">
 	<img src="/resources/images/chunsik.png" width =100px height=100px>
   <div class="mb-3 mt-4">
-    <label for="exampleInputEmail1" class="form-label">ID</label>
+    <label for="userName" class="form-label">ID</label>
     </div>
     <div>
     <input type="text"  name="userName" id="userName">
     <div id="emailHelp" class="form-text">We'll never share your ID with anyone else.</div>
   </div>
   <div class="mb-3 mt-4">
-    <label for="exampleInputPassword1" class="form-label">Password</label>
+    <label for="password" class="form-label">Password</label>
     </div>
     <div>
     <input type="text" name="password" id="password">

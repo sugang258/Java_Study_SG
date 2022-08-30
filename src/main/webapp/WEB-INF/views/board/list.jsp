@@ -24,16 +24,18 @@
   <div class="col-12">
     <label class="visually-hidden" for="kind">Kind</label>
     <select name="kind" class="form-select" id="kind">
-      <option value="contents">Contents</option>
-      <option value="title">Title</option>
-      <option value="writer">Writer</option>
+      <option class="kinds" value="contents">Contents</option>
+      <option class="kinds" value="title">Title</option>
+      <option class="kinds" value="writer">Writer</option>
     </select>
+    
+
   </div>
   
    <div class="col-12">
     <label class="visually-hidden" for="search">input</label>
     <div class="input-group">
-      <input type="text" name="search" value="" class="form-control" id="search" placeholder="Input">
+      <input type="text" name="search" value="${param.search}" class="form-control" id="search" placeholder="Input">
     </div>
   </div>
 
@@ -101,7 +103,20 @@
 </c:if>
 	<c:import url="../template/footer.jsp"></c:import>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+<script src="/resources/js/board.js"></script>
+<script>
+  let k = '${param.kind}'; //title, writer, contents...
+  const kinds = document.getElementsByClassName("kinds");
+  
+  for(let i=0;i<kinds.length;i++) {
+        console.log(kinds[i].selected);
+        if(kinds[i].value == k) {
+          kinds[i].selected = true;
+        }
+    }
 
+    
+</script>
 
 </body>
 </html>
