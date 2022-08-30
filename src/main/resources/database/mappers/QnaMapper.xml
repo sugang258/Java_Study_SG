@@ -11,7 +11,7 @@
 		    		<selectKey keyProperty="num" order="BEFORE" resultType="java.lang.Long">
 							SELECT BOARD_SEQ.NEXTVAL FROM DUAL
 					</selectKey>
-		    		INSERT (NUM, TITLE, CONTENTS, WRITER, REGDATE, HIT REF, STEP, DEPTH) INTO QNA VALUES (#{num},#{title},#{contents},#{writer},SYSDATE,0,#{ref},#{step},#{depth})
+		    		INSERT QNA(NUM, TITLE, CONTENTS, WRITER, REGDATE, HIT REF, STEP, DEPTH) INTO VALUES (#{num},#{title},#{contents},#{writer},SYSDATE,0,#{ref},#{step},#{depth})
 		    	</insert>
 		    
 		    	<update id ="setStepUpdate" parameterType="QnaDTO">
