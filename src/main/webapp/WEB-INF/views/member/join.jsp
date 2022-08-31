@@ -17,51 +17,63 @@
 	
 	<form action="./join.gang" class="align-center" id="join_submit" method="post" enctype="multipart/form-data">
   <div class="mb-3 mt-4">
-    <label for="exampleInputEmail1" class="form-label">ID</label>
+    <label for="userName" class="form-label">ID</label>
     </div>
     <div>
-    <input type="text" class="col-lg-2" name="userName">
-    <div id="emailHelp" class="form-text">We'll never share your ID with anyone else.</div>
+    <input type="text" class="col-lg-2 join_ele" name="userName" id="userName">
+    <div id="div1"></div>
+    <div id="idHelp" class="form-text">We'll never share your ID with anyone else.</div>
   </div>
   <div class="mb-3 mt-4">
-    <label for="exampleInputEmail1" class="form-label">Password</label>
+    <label for="password1" class="form-label">Password</label>
     </div>
     <div>
-    <input type="password" class="col-lg-2" name="password">
+    <input type="text" class="col-lg-2 join_ele" name="password" id="password1">
+    <div id="div2"></div>
   </div>
   <div class="mb-3 mt-4">
-    <label for="exampleInputEmail1" class="form-label">Name</label>
+    <label for="password2" class="form-label">Name</label>
     </div>
     <div>
-    <input type="text" class="col-lg-2" name="name">
+      <input type="text" class="col-lg-2 join_ele" name="password" id="password2">
+      <div id="div3"></div>
+    </div>
+    <div class="mb-3 mt-4">
+      <label for="name" class="form-label">Name</label>
+      </div>
+    <div>
+    <input type="text" class="col-lg-2 join_ele" name="name" id="name" >
+    <div id="div4"></div>
   </div>
   <div class="mb-3 mt-4">
-    <label for="exampleInputEmail1" class="form-label">Email</label>
+    <label for="email" class="form-label">Email</label>
     </div>
     <div>
-    <input type="text" class="col-lg-2" name="Email">
+    <input type="email" class="col-lg-2 join_ele" name="Email" id="email">
+    <div id="div5"></div>
   </div>
   <div class="mb-3 mt-4">
-    <label for="exampleInputPassword1" class="form-label">Phone</label>
+    <label for="phone" class="form-label">Phone</label>
     </div>
     <div>
-    <input type="text" class="col-lg-2" name="phone">
+    <input type="text" class="col-lg-2 join_ele" name="phone" id="phone">
+    <div id="div6"></div>
   </div>
   
   <div class="mb-3 mt-4">
     <label for="files" class="form-label">Photo</label>
     </div>
     <div>
-    <input type="file" class="col-lg-2" name="photo" id="files">
+    <input type="file" class="col-lg-2 join_ele" name="photo" id="files">
   </div>
   
-  <button type="submit" class="btn btn-primary mt-4" >Submit</button>
+  <button  class="btn btn-primary mt-4" id="join" >Submit</button>
   <button class="btn btn-primary mt-4" onclick="location.href='login.gang'">뒤로가기</button>
 </form>
 
     	<c:import url="../template/footer.jsp"></c:import>
     
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
-
+  <script src="/resources/js/join.js"></script>
 </body>
 </html>
