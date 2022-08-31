@@ -15,7 +15,7 @@
 <body>
 	<c:import url="../template/header.jsp"></c:import>
 	
-	<form action="./join.gang" class="align-center" method="post" enctype="multipart/form-data">
+	<form action="./join.gang" class="align-center" id="join_submit" method="post" enctype="multipart/form-data">
   <div class="mb-3 mt-4">
     <label for="exampleInputEmail1" class="form-label">ID</label>
     </div>

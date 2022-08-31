@@ -106,7 +106,7 @@ public class MemberController {
 		System.out.println("upload 하는 file의 크기 : " + photo.getSize());
 		int result = bankMembersService.setJoin(bankMembersDTO,photo,session.getServletContext());
 		
-		return "redirect:./login.gang";
+		return "member/accept";
 	}
 	
 	@RequestMapping(value = "search.gang", method=RequestMethod.GET) 
@@ -162,5 +162,19 @@ public class MemberController {
 		return "member/myPage";
 		*/
 		return "member/myPage";
+	}
+	
+	@RequestMapping(value ="accept.gang", method = RequestMethod.GET)
+	public String accept() throws Exception {
+		
+		return "member/accept";
+		
+	}
+	
+	@RequestMapping(value="accept.gang", method=RequestMethod.POST)
+	public String accept(ModelAndView mv) throws Exception {
+		
+		return "member/login";
+	
 	}
 }
