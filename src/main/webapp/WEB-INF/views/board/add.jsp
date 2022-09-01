@@ -37,25 +37,8 @@
     <textarea class="col-lg-2" name="contents" id="contents"></textarea>
   </div>
   
-  <div class="mb-3 mt-4">
-    <label for="files" class="form-label">File</label>
-    </div>
-    <div>
-    <input type="file" class="col-lg-2" name="files" id="files1">
-  </div>
-  
-  <div class="mb-3 mt-4">
-    <label for="files" class="form-label">File</label>
-    </div>
-    <div>
-    <input type="file" class="col-lg-2" name="files" id="files2">
-  </div>
-  
-  <div class="mb-3 mt-4">
-    <label for="files" class="form-label">File</label>
-    </div>
-    <div>
-    <input type="file" class="col-lg-2" name="files" id="files3">
+  <div id="addFiles">
+    <button type="button" class="btn btn-danger" id="fileAdd">파일 추가</button>
   </div>
  
   
@@ -70,6 +53,7 @@
 	<script type="text/javascript">
 		$("#contents").summernote();
 	</script>
+  <script src="/resources/js/board_file.js"></script>
 
 </body>
 </html>
