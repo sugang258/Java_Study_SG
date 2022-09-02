@@ -1,10 +1,16 @@
 //let kind = '${param.kind}';
 //alert(kind);
+function check() {
 const all = document.getElementById("all");
-const cb = document.getElementsByClassName("cb");
+//const cb = document.getElementsByClassName("cb");
+const cb = document.querySelectorAll(".cb");
 const accept = document.getElementById("accept");
 const accept_submit = document.getElementById("accept_submit");
 const req = document.getElementsByClassName("req");
+
+cb.forEach(function(v,i,ar){
+    console.log(v);
+})
 
 all.addEventListener("click",function(){
         
@@ -47,3 +53,4 @@ accept.addEventListener("click", function(){
     }
     
 });
+}
