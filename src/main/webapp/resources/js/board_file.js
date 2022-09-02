@@ -6,7 +6,6 @@ let idx = 0;
     
 fileAdd.addEventListener("click",function() {
     
-    
     if(count >4) {
 
         alert("5회이상 안됨");
@@ -56,7 +55,7 @@ fileAdd.addEventListener("click",function() {
     let b = document.createAttribute("type");
     b.value = "button";
     let c3 = document.createAttribute("class");
-    c3.value = "del btn-danger";
+    c3.value = "del btn btn-danger";
     let t1 = document.createTextNode("삭제");
     i1.setAttributeNode(b);
     i1.setAttributeNode(c3);

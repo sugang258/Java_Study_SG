@@ -1,3 +1,4 @@
+function joincheck() {
 const userName = document.getElementById("userName");
 const password1 = document.getElementById("password1");
 const password2 = document.getElementById("password2");
@@ -15,35 +16,55 @@ const div6 = document.getElementById("div6");
 const join_ele = document.getElementsByClassName("join_ele");
 const phone_regex = /\d{3}-\d{4}-\d{4}/;
 
+ //Check 결과
+ let idCheck=false;
+ let pwCheck=false;
+ let pwEqualCheck=false;
+ let nameCheck=false;
+ let emailCheck=false;
+ let phoneCheck=false;
+
 
 userName.addEventListener("blur",function(){
-    if(userName.value.length <2) {
-        userName.focus();
-        div1.value = "2글자 이상 작성해주세요";
-        div1.innerHTML = div1.value;
-    }
+    idCheck = false;
+    
+    if(userName.value.length <1) {
+        div1.innerHTML ="";
+        idCheck = true;
+    }else{
+            div1.value = "2글자 이상 작성해주세요";
+            div1.innerHTML = div1.value;
+
+         }
+    
 });
 
-password1.addEventListener("keyup",function(){
-    console.log("password 입력");
-   
-});
 
-password1.addEventListener("blur",function(){
-    if(password1.value.length < 6) {
+password1.addEventListener("change",function(){
+    if(password1.value.length >5) {
+        pwCheck = true;
+        div2.innerHTML = "";
+        password2.value = "";
+
+    }else {
+        pwCheck = false;
         div2.value = "6글자 이상 작성해주세요";
         div2.innerHTML = div2.value;
-        password1.focus();
+        
     }
 });
 
 password2.addEventListener("blur",function(){
+    console.log("pwEqual");
     if(password1.value == password2.value) {
-        div3.value ="같다";
+        pwEqualCheck=true;
+        div2.value="";
+        div3.innerHTML ="같다";
     }else {
-        div3.value= "다르다";
+        pwEqualCheck = false;
+        password2.value="";
+        div3.innerHTML= "다르다";
     }
-    div3.innerHTML = div3.value;
 });
 
 name.addEventListener("blur",function(){
@@ -94,3 +115,4 @@ join.addEventListener("click",function(){
     
 })
 
+}
