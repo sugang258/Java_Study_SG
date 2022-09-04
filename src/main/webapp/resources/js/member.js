@@ -5,19 +5,19 @@ const password = document.getElementById("password");
 
 login.addEventListener("click",function(){
 
-    /*
-    if(userName.value == null) {
-        console.log("null");
-    }
-
-    console.log(userName.value);
-    */
+    let u = userName.value;
+    let p = password.value;
     
-    if(userName.value != "" && password.value != "") {
-        login_submit.submit();
-    }else {
-        alert("로그인 안돼");
+    if(u == "") {
+        alert("ID는 필수 입니다.");
+        return;
     }
+    if(p=="") {
+        alert("PW는 필수 입니다.");
+        return;
+    }
+    
+    login_submit.submit();
     
     
 });

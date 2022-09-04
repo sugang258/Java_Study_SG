@@ -30,6 +30,9 @@
 </form>
 
     <script src="/resources/js/board.js"></script>
+    <script>
+        check();
+    </script>
 
 </body>
 </html>

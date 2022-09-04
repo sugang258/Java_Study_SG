@@ -26,6 +26,7 @@
                     	<c:otherwise>
 		                    <a class="nav-link active" href="/member/login.gang">로그인</a>
 		                    <a class="nav-link active" href="/member/join.gang">회원가입</a>
+		                   
 		                </c:otherwise>
                     </c:choose>
                 </div>

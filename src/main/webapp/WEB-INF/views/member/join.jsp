@@ -25,17 +25,17 @@
     <div id="idHelp" class="form-text">We'll never share your ID with anyone else.</div>
   </div>
   <div class="mb-3 mt-4">
-    <label for="password1" class="form-label">Password</label>
+    <label for="password1" class="form-label">Password1</label>
     </div>
     <div>
     <input type="text" class="col-lg-2 join_ele" name="password" id="password1">
     <div id="div2"></div>
   </div>
   <div class="mb-3 mt-4">
-    <label for="password2" class="form-label">Name</label>
+    <label for="password2" class="form-label">Password2</label>
     </div>
     <div>
-      <input type="text" class="col-lg-2 join_ele" name="password" id="password2">
+      <input type="text" class="col-lg-2 join_ele" name="password2" id="password2">
       <div id="div3"></div>
     </div>
     <div class="mb-3 mt-4">
@@ -67,7 +67,7 @@
     <input type="file" class="col-lg-2 join_ele" name="photo" id="files">
   </div>
   
-  <button  class="btn btn-primary mt-4" id="join" >Submit</button>
+  <input type="button"  class="btn btn-primary mt-4" id="join" value="가입하기">
   <button class="btn btn-primary mt-4" onclick="location.href='login.gang'">뒤로가기</button>
 </form>
 
@@ -75,5 +75,8 @@
     
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
   <script src="/resources/js/join.js"></script>
+  <script>
+    joinCheck();
+  </script>
 </body>
 </html>

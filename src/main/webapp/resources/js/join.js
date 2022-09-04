@@ -42,7 +42,7 @@ password1.addEventListener("change",function(){
     if(password1.value.length > 5) {
         pwCheck = true;
         div2.innerHTML="";
-        password1.value="";
+        password2.value="";
     }else{
         pwCheck=false;
         div2.value = "6글자 이상 작성해주세요";
@@ -63,19 +63,31 @@ password2.addEventListener("blur",function(){
 });
 
 name.addEventListener("blur",function(){
-    if(name.value.length < 1) {
+    if(name.value.length > 0) {
+        nameCheck=true;
+        div4.innerHTML="";
+    }else{
+        nameCheck=false;
         div4.value = "1글자 이상 작성해주세요";
         div4.innerHTML = div4.value;
     }
 });
 email.addEventListener("blur",function(){
-    if(email.value.length < 1) {
+    if(email.value.length > 0) {
+        emailCheck=true;
+        div5.innerHTML="";
+    }else{
+        emailCheck=false;
         div5.value = "1글자 이상 작성해주세요";
         div5.innerHTML = div5.value;
     }
 });
 phone.addEventListener("blur",function(){
-    if(phone.value.length < 1) {
+    if(phone.value.length > 0 ) {
+        phoneCheck=true;
+        div6.innerHTML="";
+    }else{
+        phoneCheck=false;
         div6.value = "1글자 이상 작성해주세요";
         div6.innerHTML = div6.value;
     }
@@ -92,17 +104,19 @@ phone.addEventListener("blur",function(){
 join.addEventListener("click",function(){
     //console.log(join_ele[i]);
     
-    for(let i=0;i<join_ele.length;i++) {
-        if(join_ele[i].value == "") {
-            console.log(join_ele[i]);
-            alert("모든 칸을 작성해주세요");
-            join_ele[i].focus();
-            break;
-            
-        }else{
-            join_submit.submit();
-        }
-    }
+   if(idCheck && pwCheck && pwEqualCheck && nameCheck && emailCheck && phoneCheck) {
+        alert("서버 전송 합니다");
+        console.log(idCheck);
+        console.log(pwCheck);
+        console.log(pwEqualCheck);
+        console.log(nameCheck);
+        console.log(emailCheck);
+        console.log(phoneCheck);
+
+        join_submit.submit();
+   }else {
+        alert("필수 입력 사항은 다 입력 해야함");
+   }
     
 })
     
