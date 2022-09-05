@@ -49,27 +49,40 @@ public class MemberController {
 	
 	// /member/login
 		@RequestMapping(value = "login.gang", method= RequestMethod.POST)
-		public String login(HttpSession session, BankMembersDTO bankMembersDTO, Model model) throws Exception {
+		public ModelAndView login(HttpSession session, BankMembersDTO bankMembersDTO, Model model) throws Exception {
+			ModelAndView mv = new ModelAndView();
 			System.out.println("DB에 로그인 실행");
 			//"redirect:다시접속할URL주소(절대경로, 상대경로)"
 			
 			
 			bankMembersDTO = bankMembersService.getLogin(bankMembersDTO);
-			model.addAttribute("member",bankMembersDTO);
+			//model.addAttribute("member",bankMembersDTO);
 			
 			//HttpSession session = request.getSession();
 			session.setAttribute("member", bankMembersDTO);
 			
+			int result = 0;
+			String message = "로그인 실패";
+			String url = "./login.gang";
 			
 			 if(bankMembersDTO != null) {
-				System.out.println("로그인 성공");
-			}else {
-				System.out.println("로그인 실패");
+				 result = 1;
+				message="로그인 성공";
+//				System.out.println(message);
+//			}else {
+//				System.out.println(message);
+				url = "../";
 			}
+			 
+			 mv.addObject("result", result);
+			 mv.addObject("message", message);
+			 mv.addObject("url", url);
+			 mv.setViewName("common/result");
+			 
 			
 			//System.out.println(bankMembersDTO);
 			
-			return "redirect:../";
+			return mv;
 		}
 		
 	
