@@ -14,6 +14,7 @@
 		<typeAlias type="com.gang.start.board.impl.BoardDTO" alias="boardDTO"/>
 		<typeAlias type="com.gang.start.members.MemberFileDTO" alias="MemberFileDTO" />
 		<typeAlias type="com.gang.start.board.impl.BoardFileDTO" alias="boardFileDTO"/>
+		<typeAlias type="com.gang.start.bankbook.BankBookCommentDTO" alias="BankBookCommentDTO"/>
 		<typeAlias type="java.util.List" alias="List"/>
 	</typeAliases>
 	 

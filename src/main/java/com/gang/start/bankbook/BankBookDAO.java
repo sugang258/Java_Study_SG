@@ -64,5 +64,11 @@ public class BankBookDAO implements BookDAO {
 	
 	
 	
+	public int setReply(BankBookCommentDTO bankBookCommentDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE+"setReply", bankBookCommentDTO);
+	}
+	
+	
+	
 
 }
