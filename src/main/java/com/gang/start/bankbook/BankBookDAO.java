@@ -61,7 +61,11 @@ public class BankBookDAO implements BookDAO {
 		
 		return sqlSession.delete(NAMESPACE+"setDelete", bankBookDTO);
 	}
-	
+//	
+//	public int setReply(BankBookCommentDTO bankBookCommentDTO) throws Exception{
+//		return sqlSession.insert(NAMESPACE+"setReply", bankBookCommentDTO);
+//	}
+//	
 	
 	
 

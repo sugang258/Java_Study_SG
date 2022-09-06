@@ -11,12 +11,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.gang.start.bankbook.BankBookDAO;
 import com.gang.start.bankbook.BankBookDTO;
+import com.gang.start.members.BankMembersDTO;
+import com.gang.start.util.CommentPager;
 
 @Controller
 @RequestMapping(value="/bankbook/*")
@@ -40,23 +45,16 @@ public class BankBookController {
 	}
 	
 	@RequestMapping(value = "detail.gang", method=RequestMethod.GET)
-	public ModelAndView detail(BankBookDTO bankBookDTO) throws Exception {
+	public ModelAndView detail(BankBookDTO bankBookDTO, HttpSession session) throws Exception {
 		
 		ModelAndView mv = new ModelAndView();
 		
-		//String bookNum = request.getParameter("bookNum");
-		//Long l = Long.parseLong(bookNum);
-	
 		
-		//System.out.println(bookNum);
-		//BankBookDTO bankbookDTO = new BankBookDTO();
-		
-		
-		//bankbookDTO.setBooknum(l);
 		bankBookDTO = bankBookService.getDetail(bankBookDTO);
 		
 		//request.setAttribute("dto", bankbookDTO);
 		
+		session.setAttribute("dto",bankBookDTO);
 		mv.setViewName("bankbook/detail");
 		mv.addObject("dto", bankBookDTO);
 		//return "/bankbook/detail";
@@ -136,18 +134,58 @@ public class BankBookController {
 	}
 	
 	//-----------------------Comment----------------------------------
-	@RequestMapping(value="setReply", method=RequestMethod.POST)
-	public void setReply(BankBookCommentDTO bankBookCommentDTO, HttpSession session) throws Exception{
+//	@PostMapping("setReply")
+//	public ModelAndView setReply(BankBookCommentDTO bankBookCommentDTO) throws Exception{
+//		ModelAndView mv = new ModelAndView();
+//		System.out.println("답글 실행");
+//	
+//		int result = bankBookService.setReply(bankBookCommentDTO);
+//		
+//		mv.addObject("result", result);
+//		mv.setViewName("common/ajaxResult");
+//		return mv;
+//		
+//	}
+	@PostMapping("setReply")
+	@ResponseBody
+	public String setReply(BankBookCommentDTO bankBookCommentDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
 		System.out.println("답글 실행");
-		
-//		session.getAttribute("member");
-//		bankBookCommentDTO.setWriter();
 		
 		int result = bankBookService.setReply(bankBookCommentDTO);
 		
-		
+		//{}
+		String jsonResult = "{\"result\":\""+result+"\"}";
+		return jsonResult;
 		
 	}
 	
-
+	//1. JSP에 출력하고 결과물을 응답으로 전송
+//	@GetMapping("getReply")
+//	public ModelAndView getReply(CommentPager pager) throws Exception {
+//		ModelAndView mv = new ModelAndView();
+//		System.out.println("답글 리스트 실행");
+//		
+//		List<BankBookCommentDTO> ar = bankBookService.getReply(pager);
+//		
+//		System.out.println(ar.size());
+//		
+//		mv.addObject("commentList", ar);
+//		mv.setViewName("common/commentList");
+//		
+//		return mv;
+//	
+//	}
+	@GetMapping("getReply")
+	@ResponseBody
+	public List<BankBookCommentDTO> getReply(CommentPager pager) throws Exception {
+		System.out.println("답글 리스트 실행");
+		
+		List<BankBookCommentDTO> ar = bankBookService.getReply(pager);
+		
+		System.out.println(ar.size());
+		
+		return ar;
+		
+	}
 }
