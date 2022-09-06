@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -134,6 +135,20 @@ public class BankBookController {
 		return mv;
 	}
 	
+	//-----------------------Comment----------------------------------
+	@RequestMapping(value="setReply", method=RequestMethod.POST)
+	public void setReply(BankBookCommentDTO bankBookCommentDTO, HttpSession session) throws Exception{
+		System.out.println("답글 실행");
+		
+//		session.getAttribute("member");
+//		bankBookCommentDTO.setWriter();
+		
+		
+		int result = bankBookService.setReply(bankBookCommentDTO);
+		
+		
+		
+	}
 	
 
 }

@@ -7,10 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.gang.start.MyAbstractTest;
 
-public class BankBookTest extends MyAbstractTest {
+public class BankBookCommentTest extends MyAbstractTest {
 
 	@Autowired
-	private BankBookDAO bankBookDAO;
+	private BankBookCommentDAO bankBookCommentDAO;
 	
 	@Test
 	public void setAdd() throws Exception {
@@ -20,7 +20,7 @@ public class BankBookTest extends MyAbstractTest {
 		bankBookCommentDTO.setWriter("s2");
 		bankBookCommentDTO.setContents("S2");
 		
-		int result = bankBookDAO.setReply(bankBookCommentDTO);
+		int result = bankBookCommentDAO.setReply(bankBookCommentDTO);
 		assertEquals(1,result);
 		
 	}

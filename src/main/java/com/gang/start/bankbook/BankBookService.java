@@ -9,6 +9,19 @@ import org.springframework.stereotype.Service;
 @Service
 public class BankBookService {
 	
+	//------------------Comment-----------------------
+	@Autowired
+	private BankBookCommentDAO bankBookCommentDAO;
+	
+	public int setReply(BankBookCommentDTO bankBookCommentDTO) throws Exception{
+		
+		return bankBookCommentDAO.setReply(bankBookCommentDTO);
+		
+	}
+	
+	
+	
+	//-----------------------------------------------
 	@Autowired
 	private BankBookDAO bankBookDAO;
 	//BankBook Table에 Insert
