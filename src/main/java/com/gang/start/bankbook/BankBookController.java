@@ -143,7 +143,6 @@ public class BankBookController {
 //		session.getAttribute("member");
 //		bankBookCommentDTO.setWriter();
 		
-		
 		int result = bankBookService.setReply(bankBookCommentDTO);
 		
 		
