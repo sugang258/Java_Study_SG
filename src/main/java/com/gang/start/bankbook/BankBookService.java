@@ -23,6 +23,8 @@ public class BankBookService {
 	
 	public List<BankBookCommentDTO> getReply(CommentPager pager) throws Exception {
 		pager.getRowNum();
+		Long totalCount = bankBookCommentDAO.getCommentListTotalCount(pager);
+		pager.makePage(totalCount);
 		return bankBookCommentDAO.getReply(pager);
 	}
 	

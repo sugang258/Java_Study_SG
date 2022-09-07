@@ -2,7 +2,9 @@ package com.gang.start.bankbook;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -148,11 +150,13 @@ public class BankBookController {
 //	}
 	@PostMapping("setReply")
 	@ResponseBody
-	public String setReply(BankBookCommentDTO bankBookCommentDTO) throws Exception{
+	public String setReply(BankBookCommentDTO bankBookCommentDTO, Model model) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		System.out.println("답글 실행");
 		
 		int result = bankBookService.setReply(bankBookCommentDTO);
+		
+		model.addAttribute("comment", bankBookCommentDTO);
 		
 		//{}
 		String jsonResult = "{\"result\":\""+result+"\"}";
@@ -178,14 +182,18 @@ public class BankBookController {
 //	}
 	@GetMapping("getReply")
 	@ResponseBody
-	public List<BankBookCommentDTO> getReply(CommentPager pager) throws Exception {
+	public Map<String, Object> getReply(CommentPager pager) throws Exception {
 		System.out.println("답글 리스트 실행");
 		
 		List<BankBookCommentDTO> ar = bankBookService.getReply(pager);
 		
 		System.out.println(ar.size());
 		
-		return ar;
+		Map<String,Object> map = new HashMap<String, Object>();
+		map.put("list", ar);
+		map.put("pager", pager);
+		
+		return map;
 		
 	}
 }

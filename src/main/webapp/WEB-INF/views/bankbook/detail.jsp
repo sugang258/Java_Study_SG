@@ -11,6 +11,7 @@
 </head>
 <style>
     .align-center {text-align: center;}
+	
 </style>
 <body>
 <c:import url="../template/header.jsp"></c:import>
@@ -75,11 +76,15 @@
 	</div>
 
 	<!--Comment List 출력-->
-	<div id="commentList">
+	<div class="table">
+		<table id="commentList">
+
+		</table>
+		<button type="button" class="btn btn-danger disabled" id="more" value="더복이"><img src="/resources/images/chunsik.png"  width="60px" height="50px"></button>
 		
 	</div>
 	<!--------Comment--------->
-<c:import url="../template/footer.jsp"></c:import>
+	<c:import url="../template/footer.jsp"></c:import>
     
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 	<script src="/resources/js/bankbookComment.js"></script>
