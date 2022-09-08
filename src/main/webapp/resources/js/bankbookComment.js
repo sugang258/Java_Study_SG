@@ -3,6 +3,7 @@ const writer = document.querySelector("#writer");
 const contents = document.querySelector("#contents");
 const commentList = document.querySelector("#commentList");
 const more = document.querySelector("#more");
+const updateContents = document.querySelector("#updateContents");
 
 
 //page번호 담는 변수
@@ -125,6 +126,10 @@ function getCommentList(p, bn) {
                 td.appendChild(del);
                 tr.appendChild(td);
 
+                tdAttr = document.createAttribute("data-comment-num");
+                tdAttr.value = ar[i].num;
+                td.setAttributeNode(tdAttr);
+
                 commentList.append(tr);
 
                 if(page >= pager.totalPage) {
@@ -179,15 +184,71 @@ more.addEventListener("click",function(){
 
 commentList.addEventListener("click",function(event){
 
-
     if(event.target.className == "delete") {
         let check = window.confirm("삭제하시겠습니까?");
 
-        console.log(event.target.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.innerHTML);
+        if (check) {
+            let num = event.target.getAttribute("data-comment-num");
+
+
+            const xhttp = new XMLHttpRequest();
+
+            xhttp.open("POST","./setCommentDelete");
+        
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        
+            xhttp.send("num="+num);
+
+            xhttp.onreadystatechange = function(){
+                if(xhttp.readyState == 4 && xhttp.status == 200) {
+                    console.log(num);
+                    let result = xhttp.responseText.trim();
+                    console.log(result);
+
+                    if(result == 1) {
+
+                        alert("댓글 삭제 완료");
+
+                        for(let i=0;i<commentList.children.length;) {
+                            commentList.children[i].remove();
+                        }
+
+                        page = 1;
+                        getCommentList(page,bookNum);
+
+                    }else {
+                        alert("댓글 삭제 실패");
+
+                    }
+                } 
+        }
+    
+        }else{
+            alert("삭제 취소");
+        }
     }
-    // let d = event.target;
-    // if(d.className == 'del') {
 
-    // }
+    if(event.target.className == "update") {
+        
+        let contents = event.target.previousSibling.previousSibling.previousSibling.innerHTML;
+        updateContents.innerHTML = contents;
+        document.querySelector("#up").click();
 
-})
+
+        // let check = window.confirm("수정하시겠습니까?");
+        // let contents = event.target.previousSibling.previousSibling.previousSibling;
+        // let v = contents.innerHTML;
+        // contents.innerHTML="<textarea>"+v+"</textarea>";
+        // console.log(contents);
+
+
+
+        if(check) {
+
+        }else {
+            alert("수정 취소");
+        }
+    }
+
+
+});

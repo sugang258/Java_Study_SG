@@ -196,4 +196,17 @@ public class BankBookController {
 		return map;
 		
 	}
+	
+	@PostMapping("setCommentDelete")
+	@ResponseBody
+	public int setCommentDelete(BankBookCommentDTO bankBookCommentDTO) throws Exception {
+		
+		int result = bankBookService.setCommentDelete(bankBookCommentDTO);
+		
+		
+		return result;
+		
+		//return result;
+		
+	}
 }

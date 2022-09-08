@@ -15,7 +15,7 @@ public class BankBookCommentTest extends MyAbstractTest {
 	@Autowired
 	private BankBookCommentDAO bankBookCommentDAO;
 	
-	@Test
+	//@Test
 	public void setAdd() throws Exception {
 		BankBookCommentDTO bankBookCommentDTO = new BankBookCommentDTO();
 		
@@ -28,7 +28,7 @@ public class BankBookCommentTest extends MyAbstractTest {
 		
 	}
 	
-	@Test
+	//@Test
 	public void getReply() throws Exception{
 
 		CommentPager pager = new CommentPager();
@@ -43,6 +43,25 @@ public class BankBookCommentTest extends MyAbstractTest {
 		
 		
 		assertNotEquals(0, ar.size());
+	}
+	
+	//@Test
+	public void setCommentDeleteTest() throws Exception {
+		BankBookCommentDTO bankBookCommentDTO = new BankBookCommentDTO();
+		bankBookCommentDTO.setNum(223L);
+		
+		int result = bankBookCommentDAO.setCommentDelete(bankBookCommentDTO);
+		assertEquals(1,result);
+	}
+	
+	@Test
+	public void setCommentUpdateTest() throws Exception {
+		BankBookCommentDTO bankBookCommentDTO = new BankBookCommentDTO();
+		bankBookCommentDTO.setNum(248L);
+		bankBookCommentDTO.setContents("ZZIIZZIZ");
+		
+		int result = bankBookCommentDAO.setCommentUpdate(bankBookCommentDTO);
+		assertEquals(1, result);
 	}
 
 }
