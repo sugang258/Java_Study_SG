@@ -98,9 +98,11 @@
   </ul>
 </nav>
 	
-<c:if test="${not empty sessionScope.member}">
+<!--<c:if test="${not empty sessionScope.member}">
 <a href="./add.gang">글 작성하기</a>
-</c:if>
+</c:if>-->
+<a href="./add.gang">글 작성하기</a>
+
 	<c:import url="../template/footer.jsp"></c:import>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 <script src="/resources/js/board.js"></script>

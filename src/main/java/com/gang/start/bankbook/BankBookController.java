@@ -209,4 +209,15 @@ public class BankBookController {
 		//return result;
 		
 	}
+	
+	@PostMapping("setCommentUpdate")
+	@ResponseBody
+	public int setCommentUpdate(BankBookCommentDTO bankBookCommentDTO) throws Exception {
+		System.out.println("댓글 수정");
+		
+		int result = bankBookService.setCommentUpdate(bankBookCommentDTO);
+		
+		
+		return result;
+	}
 }

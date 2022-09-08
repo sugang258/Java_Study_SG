@@ -4,7 +4,8 @@ const contents = document.querySelector("#contents");
 const commentList = document.querySelector("#commentList");
 const more = document.querySelector("#more");
 const updateContents = document.querySelector("#updateContents");
-
+const updateWriter = document.querySelector("#updateWriter");
+const update = document.querySelector("#update");
 
 //page번호 담는 변수
 let page=1;
@@ -90,26 +91,23 @@ function getCommentList(p, bn) {
                 let num = document.createTextNode(ar[i].num);
                 let contents =document.createTextNode(ar[i].contents);
                 let writer= document.createTextNode(ar[i].writer);
-                let date = document.createTextNode(ar[i].regDate);
+                let date1 = document.createTextNode(ar[i].regDate);
                 let update = document.createTextNode("수정");
                 let del = document.createTextNode("삭제");
 
                 td.appendChild(num);
                 tr.appendChild(td);
-                commentList.append(tr);
 
                 td = document.createElement("td");
                 td.appendChild(contents);
                 tr.appendChild(td);
-                commentList.append(tr);
 
                 td = document.createElement("td");
                 td.appendChild(writer);
                 tr.appendChild(td);
-                commentList.append(tr);
-
+                
                 td = document.createElement("td");
-                td.appendChild(date);
+                td.appendChild(date1);
                 tr.appendChild(td);
 
                 td = document.createElement("td");
@@ -117,6 +115,11 @@ function getCommentList(p, bn) {
                 tdAttr.value = "update";
                 td.setAttributeNode(tdAttr);
                 td.appendChild(update);
+                tr.appendChild(td);
+
+                tdAttr = document.createAttribute("data-comment-num");
+                tdAttr.value = ar[i].num;
+                td.setAttributeNode(tdAttr);
                 tr.appendChild(td);
 
                 td = document.createElement("td");
@@ -129,6 +132,7 @@ function getCommentList(p, bn) {
                 tdAttr = document.createAttribute("data-comment-num");
                 tdAttr.value = ar[i].num;
                 td.setAttributeNode(tdAttr);
+                tr.appendChild(td);
 
                 commentList.append(tr);
 
@@ -231,8 +235,17 @@ commentList.addEventListener("click",function(event){
     if(event.target.className == "update") {
         
         let contents = event.target.previousSibling.previousSibling.previousSibling.innerHTML;
-        updateContents.innerHTML = contents;
+        let writer = event.target.previousSibling.previousSibling.innerHTML;
+        let num = event.target.getAttribute("data-comment-num");
+
+        updateContents.value = contents;
+        updateWriter.value = writer;
+        document.querySelector("#num").value = num;
+
         document.querySelector("#up").click();
+
+       
+
 
 
         // let check = window.confirm("수정하시겠습니까?");
@@ -241,14 +254,55 @@ commentList.addEventListener("click",function(event){
         // contents.innerHTML="<textarea>"+v+"</textarea>";
         // console.log(contents);
 
+        // if(check) {
 
-
-        if(check) {
-
-        }else {
-            alert("수정 취소");
-        }
+        // }else {
+        //     alert("수정 취소");
+        // }
     }
 
 
 });
+
+
+//-----------------------------Modal Update button click------------------------
+update.addEventListener("click",function(){
+    //modal에서 num,contents를 가지고 와서 ajax를 통해 서버로 보냄
+
+    let num = document.getElementById("num").value;
+    let contents = updateContents.value;
+
+    let xhttp = new XMLHttpRequest();
+
+    xhttp.open("POST", "setCommentUpdate");
+
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        
+    xhttp.send("num="+num + "&contents="+contents);
+
+    xhttp.onreadystatechange = function(){
+        if(this.readyState == 4 && this.status == 200) {
+            let result = xhttp.responseText.trim();
+            console.log(result);
+            if(result == 1) {
+                alert('수정성공');
+                document.querySelector("#close").click();
+
+                for(let i=0;i<commentList.children.length;) {
+                    commentList.children[i].remove();
+                }
+
+                page = 1;
+                getCommentList(page,bookNum);
+
+            }else {
+                alert('수정실패');
+            }
+        }
+    }
+
+
+
+    
+
+})

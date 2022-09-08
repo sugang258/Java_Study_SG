@@ -70,8 +70,15 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value="add.gang", method=RequestMethod.GET)
-	public String setAdd() throws Exception {
-		return "board/add";
+	public String setAdd(HttpSession session) throws Exception {
+		BankMembersDTO bankMembersDTO =(BankMembersDTO) session.getAttribute("member");
+		
+		if(bankMembersDTO != null) {
+			return "board/add";
+		}else {
+			return "redirect:../member/login.gang";
+		}
+		
 	}
 	
 	

@@ -111,8 +111,8 @@
 						</form>
 					  </div>
 					  <div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-						<button type="button" class="btn btn-primary">Send message</button>
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="close">Close</button>
+						<button type="button" class="btn btn-primary" id="update">Send message</button>
 					  </div>
 					</div>
 				  </div>
