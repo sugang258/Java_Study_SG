@@ -29,6 +29,8 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		
+		System.out.println("Controller 실행");
+		
 //		try {
 //			Thread.sleep(10000);
 //		} catch (InterruptedException e) {

@@ -21,6 +21,34 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<!-- Interceptor 설정 -->
+	<!-- Interceptor 객체 생성 -->
+	<beans:bean class="com.gang.start.interceptor.TestInterceptor" id="testInterceptor"></beans:bean>
+	
+	
+	<!-- URL - Interceptor 맵핑 -->
+	<interceptors>
+ 		<interceptor>
+ 			<mapping path="/qna/update.gang"/>
+ 			<mapping path="/notice/update.gang"/>
+ 			<beans:bean class="com.gang.start.interceptor.WriterCheckInterceptor" id ="writerCheckInterceptor"></beans:bean>
+ 		</interceptor>
+ 		
+		<interceptor>
+			<!-- URL 경로 -->
+			<mapping path="/**"/>
+			<beans:ref bean="testInterceptor"/>
+		</interceptor>
+<!-- 
+		<interceptor>
+			<mapping path="/qna/*"/>
+			<mapping path="/member/myPage.gang"/>
+			<exclude-mapping path="/qna/list.gang"/>
+			<beans:bean class="com.gang.start.interceptor.MemberInterceptor" id="memberInterceptor"></beans:bean>
+		</interceptor>
+ -->
+	</interceptors>
+	
 	<context:component-scan base-package="com.gang.start" />
 	
 	

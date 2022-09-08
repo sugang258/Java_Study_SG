@@ -99,17 +99,17 @@ public class QnaController {
 	}
 	
 	@RequestMapping(value="update.gang", method=RequestMethod.GET)
-	public String setUpdate(BoardDTO boardDTO, Model model) throws Exception {
+	public String setUpdate(BoardDTO boardDTO, ModelAndView mv) throws Exception {
 		
 		boardDTO = qnaService.getDetail(boardDTO);
-		model.addAttribute("boardDTO",boardDTO);
+		mv.addObject("boardDTO",boardDTO);
 		
 		return "board/update";
 		
 	}
 	
 	@RequestMapping(value="update.gang", method=RequestMethod.POST)
-	public ModelAndView setUpdate(BoardDTO boardDTO, ModelAndView mv) throws Exception {
+	public ModelAndView setUpdate(BoardDTO boardDTO, ModelAndView mv, HttpSession session) throws Exception {
 		System.out.println(boardDTO);
 		int result = qnaService.setUpdate(boardDTO);
 		mv.setViewName("redirect:./detail.gang?num="+boardDTO.getNum());
