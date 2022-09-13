@@ -27,18 +27,7 @@
 	
 	
 	<!-- URL - Interceptor 맵핑 -->
-	<interceptors>
- 		<interceptor>
- 			<mapping path="/qna/update.gang"/>
- 			<mapping path="/notice/update.gang"/>
- 			<beans:bean class="com.gang.start.interceptor.WriterCheckInterceptor" id ="writerCheckInterceptor"></beans:bean>
- 		</interceptor>
- 		
-		<interceptor>
-			<!-- URL 경로 -->
-			<mapping path="/**"/>
-			<beans:ref bean="testInterceptor"/>
-		</interceptor>
+	
 <!-- 
 		<interceptor>
 			<mapping path="/qna/*"/>
@@ -47,6 +36,29 @@
 			<beans:bean class="com.gang.start.interceptor.MemberInterceptor" id="memberInterceptor"></beans:bean>
 		</interceptor>
  -->
+	
+	
+	<!-- Interceptor 객체 생성 -->
+	<beans:bean class="com.gang.start.interceptor.AdminCheckInterceptor" id="adminCheckInterceptor"></beans:bean>
+	<beans:bean class="com.gang.start.interceptor.MemberInterceptor" id="memberInterceptor"></beans:bean>
+	
+	<interceptors>
+		<interceptor>
+			<mapping path="/notice/**" />
+			<mapping path="/qna/**" />
+			<exclude-mapping path="/notice/list.gang" />
+			<exclude-mapping path="/notice/detail.gang"/>
+			<exclude-mapping path="/qna/list.gang" />
+			<beans:ref bean="memberInterceptor"/>
+		</interceptor>
+		<interceptor>
+			<mapping path="/notice/*"/>
+			<exclude-mapping path="/notice/list.gang" />
+			<exclude-mapping path="/notice/detail.gang"/>
+			<beans:ref bean="adminCheckInterceptor"/>
+		</interceptor>
+	
+	
 	</interceptors>
 	
 	<context:component-scan base-package="com.gang.start" />

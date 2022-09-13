@@ -121,7 +121,14 @@
    </table>
     <div class="row">
    		<img alt="" src="../resources/upload/member/${dto.memberFileDTO.fileName}">
-  	  </div>
+  	</div>
+  	
+  	<div>
+  		<c:forEach items="${member.roleDTOs}" var="roleDTO">
+  			<div>${roleDTO.roleNum}, ${roleDTO.roleName}</div>
+  		</c:forEach>
+  		<h1>당신은 ${member.roleDTOs.get(0).roleName} 입니다.</h1>
+  	</div>
   
    
 	

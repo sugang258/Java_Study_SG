@@ -11,8 +11,18 @@
 		    	
 		    </insert>
          	<!-- 로그인 -->
-         	<select id="getLogin" parameterType="BankMembersDTO" resultType="BankMembersDTO">
-         		SELECT USERNAME, PASSWORD FROM BANKMEMBERS WHERE USERNAME = #{userName} AND PASSWORD = #{password}
+         	<select id="getLogin" parameterType="BankMembersDTO" resultMap="getLoginResult">
+         		select bm.username, bm.name, r.rolename
+				from bankMembers bm
+				
+				    INNER join member_role mr
+				    on BM.USERNAME = MR.USERNAME
+				    
+				    INNER JOIN ROLE R
+				    ON MR.ROLENUM = R.ROLENUM
+				    
+				    WHERE BM.USERNAME = #{userName} AND BM.PASSWORD=#{password}
+				    ORDER BY R.ROLENUM ASC
          	</select>
          	
          	<!-- id찾기 -->
@@ -56,8 +66,16 @@
          				<result column="BOOKNAME" property="bookName"></result>
          			</association>
          		</collection>
-         		
          	</resultMap>
-         
-         
+         	
+         	
+         	<resultMap type="BankMembersDTO" id="getLoginResult">
+         		<id column="USERNAME" property="userName"/>
+         		<result column="NAME" property="name"/>
+         		<collection property="roleDTOs" javaType="List" ofType="RoleDTO">
+         			<id column="ROLENUM" property="roleNum"></id>
+         			<result column="ROLENAME" property="roleName"></result>
+         		</collection>
+         	</resultMap>
+
          </mapper>

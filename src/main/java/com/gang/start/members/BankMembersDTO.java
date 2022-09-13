@@ -13,6 +13,7 @@ public class BankMembersDTO {
 	private String phone;
 	private List<BankAccountDTO> bankAccountDTOs;
 	private MemberFileDTO memberFileDTO;
+	private List<RoleDTO> roleDTOs;
 	
 	
 	
@@ -60,5 +61,14 @@ public class BankMembersDTO {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+	public List<RoleDTO> getRoleDTOs() {
+		return roleDTOs;
+	}
+	public void setRoleDTOs(List<RoleDTO> roleDTOs) {
+		this.roleDTOs = roleDTOs;
+	}
+	
+	
+	
 
 }
