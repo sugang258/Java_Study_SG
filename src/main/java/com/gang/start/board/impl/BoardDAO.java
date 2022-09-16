@@ -9,6 +9,12 @@ import com.gang.start.util.Pager;
 
 public interface BoardDAO {
 	
+	//fileDetail
+	public BoardFileDTO getFileDetail(BoardFileDTO boardFileDTO) throws Exception;
+	
+	//fileDelete
+	public int setFileDelete(BoardFileDTO boardFileDTO) throws Exception;
+	
 	//글 총갯수
 	public Long getCount(Pager pager) throws Exception;
 

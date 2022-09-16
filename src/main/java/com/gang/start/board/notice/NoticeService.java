@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSessionContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -124,8 +125,28 @@ public class NoticeService implements BoardService {
 		
 	//글수정
 	@Override
-	public int setUpdate(BoardDTO boardDTO) throws Exception{
-		return noticeDAO.setUpdate(boardDTO);
+	public int setUpdate(BoardDTO boardDTO, MultipartFile[] files, ServletContext servletContext) throws Exception{
+		String path = "resources/upload/notice";
+		int result = noticeDAO.setUpdate(boardDTO);
+		
+		if(result < 1) {
+			return result;
+		}
+		
+		for(MultipartFile mf : files) {
+		
+			if(mf.isEmpty()) {
+				continue;
+			}
+		String fileName = fileManager.saveFile(path, servletContext, mf);
+		BoardFileDTO boardFileDTO = new BoardFileDTO();
+		boardFileDTO.setFileName(fileName);
+		boardFileDTO.setOriName(mf.getOriginalFilename());
+		boardFileDTO.setNum(boardDTO.getNum());
+		noticeDAO.setAddFile(boardFileDTO);
+		}
+		
+		return result;
 	}
 		
 	//글삭제
@@ -133,7 +154,21 @@ public class NoticeService implements BoardService {
 	public int setDelete(BoardDTO boardDTO) throws Exception{
 		return noticeDAO.setDelete(boardDTO);
 	}
-	
-	
+
+	@Override
+	public int setFileDelete(BoardFileDTO boardFileDTO,ServletContext servletContext) throws Exception {
+		// TODO Auto-generated method stub
+		//하드 디스크에 있는 파일 삭제
+		boardFileDTO = noticeDAO.getFileDetail(boardFileDTO);
+		int result = noticeDAO.setFileDelete(boardFileDTO);
+		String path = "resources/upload/notice";
+
+		if(result > 0) {
+			fileManager.deleteFile(servletContext, path, boardFileDTO);
+		}
+		
+		return result;
+	}
+
 
 }

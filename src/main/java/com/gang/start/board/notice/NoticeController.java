@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -17,6 +19,7 @@ import javax.servlet.http.HttpSession;
 
 
 import com.gang.start.board.impl.BoardDTO;
+import com.gang.start.board.impl.BoardFileDTO;
 import com.gang.start.members.BankMembersDTO;
 import com.gang.start.util.Pager;
 
@@ -30,6 +33,14 @@ public class NoticeController {
 	@ModelAttribute("board")
 	public String getBoard() {
 		return "notice";
+	}
+	
+	@PostMapping("fileDelete")
+	@ResponseBody
+	public int setFileDelete(BoardFileDTO boardFileDTO,HttpSession session) throws Exception {
+		int result = noticeService.setFileDelete(boardFileDTO, session.getServletContext());
+		return result;
+		
 	}
 	
 	@RequestMapping(value="list.gang", method=RequestMethod.GET)
@@ -117,9 +128,9 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value="update.gang", method=RequestMethod.POST)
-	public ModelAndView setUpdate(BoardDTO boardDTO, ModelAndView mv) throws Exception {
+	public ModelAndView setUpdate(BoardDTO boardDTO, ModelAndView mv, MultipartFile[] files, HttpSession session) throws Exception {
 		
-		int result = noticeService.setUpdate(boardDTO);
+		int result = noticeService.setUpdate(boardDTO,files,session.getServletContext());
 		mv.setViewName("redirect:./detail.gang?num="+boardDTO.getNum());
 		return mv;
 		

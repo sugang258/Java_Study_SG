@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.gang.start.board.impl.BoardDTO;
+import com.gang.start.board.impl.BoardFileDTO;
 import com.gang.start.board.impl.BoardService;
 import com.gang.start.board.notice.NoticeDAO;
 import com.gang.start.util.Pager;
@@ -60,7 +61,7 @@ public class QnaService implements BoardService {
 		
 	//글수정
 	@Override
-	public int setUpdate(BoardDTO boardDTO) throws Exception{
+	public int setUpdate(BoardDTO boardDTO, MultipartFile[] files, ServletContext servletContext) throws Exception{
 		return QnaDAO.setUpdate(boardDTO);
 	}
 		
@@ -68,6 +69,12 @@ public class QnaService implements BoardService {
 	@Override
 	public int setDelete(BoardDTO boardDTO) throws Exception{
 		return QnaDAO.setDelete(boardDTO);
+	}
+
+	@Override
+	public int setFileDelete(BoardFileDTO boardFileDTO,ServletContext servletContext) throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

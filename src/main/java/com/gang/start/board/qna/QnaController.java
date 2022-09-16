@@ -109,9 +109,9 @@ public class QnaController {
 	}
 	
 	@RequestMapping(value="update.gang", method=RequestMethod.POST)
-	public ModelAndView setUpdate(BoardDTO boardDTO, ModelAndView mv, HttpSession session) throws Exception {
+	public ModelAndView setUpdate(BoardDTO boardDTO, ModelAndView mv,MultipartFile[] files, HttpSession session) throws Exception {
 		System.out.println(boardDTO);
-		int result = qnaService.setUpdate(boardDTO);
+		int result = qnaService.setUpdate(boardDTO,files,session.getServletContext());
 		mv.setViewName("redirect:./detail.gang?num="+boardDTO.getNum());
 		return mv;
 		

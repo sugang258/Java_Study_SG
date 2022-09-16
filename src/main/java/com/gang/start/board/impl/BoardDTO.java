@@ -8,6 +8,7 @@ public class BoardDTO extends CommentDTO{
 	private String title;
 	private Long hit;
 	private List<BoardFileDTO> boardFileDTOs;
+	
 	public String getTitle() {
 		return title;
 	}
